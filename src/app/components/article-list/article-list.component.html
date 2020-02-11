@@ -1,4 +1,10 @@
 <div>
-  <app-article class="mb-4 block" *ngFor="let item of list"></app-article>
-  
+  <app-article
+    class="mb-4 block"
+    *ngFor="let item of list$ | async"
+    [title]="item.title"
+    [description]="item.description"
+    [date]="item.date"
+    [routerLink]="item.route"
+  ></app-article>
 </div>
