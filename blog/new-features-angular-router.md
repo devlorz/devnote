@@ -7,6 +7,7 @@ published: true
 canonical_link: https://medium.com/@leelorz6/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%96%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B8%82%E0%B8%AD%E0%B8%87-router-%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%81%E0%B8%95%E0%B9%88-angular-7-6b2bbb6ef3d4
 redirect_from:
   - /ความสามารถใหม่ของ-router-ตั้งแต่-angular-7-6b2bbb6ef3d4
+image: 'assets/new-features-angular-router/asset-1.jpeg'
 ---
 
 ![Photo by [adrian](https://unsplash.com/photos/LA6EufpEUv0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/route-train?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)](assets/new-features-angular-router/asset-1.jpeg)

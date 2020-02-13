@@ -9,6 +9,7 @@ export class ArticleComponent implements OnInit {
   @Input() title: string;
   @Input() description: string;
   @Input() date: Date;
+  @Input() imgSrc: string;
 
   constructor() {}
 

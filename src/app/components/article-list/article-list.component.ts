@@ -7,8 +7,9 @@ export interface Article {
   route: string;
   title: string;
   description: string;
-  date: Date;
+  date: string;
   categories: string[];
+  image: string;
 }
 
 @Component({
@@ -24,7 +25,15 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit() {
     this.list$ = this.scully.available$.pipe(
-      map((items: Article[]) => items.filter(item => item.route !== '/'))
+      map((items: Article[]) =>
+        items
+          .filter(item => item.route !== '/')
+          .sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB.getTime() - dateA.getTime();
+          })
+      )
     );
   }
 }
