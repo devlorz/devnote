@@ -29,11 +29,29 @@
     word-break: break-word;
     font-style: normal;
     font-weight: 400;
-  }
-}
 
-.content:first-child {
-  margin-top: 2em;
+    img {
+      margin: auto;
+    }
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    list-style-image: none;
+
+    li {
+      margin-top: 1.05em;
+      margin-left: 30px;
+      list-style-type: disc;
+    }
+  }
+
+  blockquote {
+    margin-left: -10px;
+    padding-left: 20px;
+    margin-right: 0;
+  }
 }
 
 @media (max-width: 551.98px) {

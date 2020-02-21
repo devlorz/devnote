@@ -9,22 +9,29 @@
 :host {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
 
 @media (max-width: 551.98px) {
   .content {
-    margin: 0 24px;
+    margin-right: 24px;
+    margin-left: 24px;
   }
 }
 
 @media (min-width: 552px) and (max-width: 903.98px) {
   .content {
-    margin: 0 48px;
+    margin-right: 48px;
+    margin-left: 48px;
   }
 }
 
 @media (min-width: 904px) {
   .content {
-    margin: 0 64px;
+    margin-right: 64px;
+    margin-left: 64px;
   }
 }
