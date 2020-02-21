@@ -1,16 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-export interface Article {
-  route: string;
-  title: string;
-  description: string;
-  date: string;
-  categories: string[];
-  image: string;
-}
+import { Article } from 'src/app/interface';
 
 @Component({
   selector: 'app-article-list',
@@ -18,10 +11,9 @@ export interface Article {
   styleUrls: ['./article-list.component.scss']
 })
 export class ArticleListComponent implements OnInit {
-  list = [1, 2, 3, 4, 5, 6];
   list$: Observable<Article[]>;
 
-  constructor(public scully: ScullyRoutesService) {}
+  constructor(public scully: ScullyRoutesService, private router: Router) {}
 
   ngOnInit() {
     this.list$ = this.scully.available$.pipe(
@@ -35,5 +27,9 @@ export class ArticleListComponent implements OnInit {
           })
       )
     );
+  }
+
+  onClick(route: string) {
+    this.router.navigateByUrl(route);
   }
 }
