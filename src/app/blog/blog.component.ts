@@ -1,5 +1,12 @@
+import { HighlightService } from './../highlight.service';
 import { Article } from '../interface';
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  OnDestroy,
+  AfterViewChecked
+} from '@angular/core';
 import { ActivatedRoute, Router, ROUTES } from '@angular/router';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Subscription, Observable } from 'rxjs';
@@ -14,7 +21,7 @@ declare var ng: any;
   preserveWhitespaces: true,
   encapsulation: ViewEncapsulation.Emulated
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, AfterViewChecked {
   data$: Observable<Article>;
 
   ngOnInit() {
@@ -23,9 +30,14 @@ export class BlogComponent implements OnInit {
       .pipe(tap(res => console.log(res))) as Observable<Article>;
   }
 
+  ngAfterViewChecked() {
+    this.highlightService.highlightAll();
+  }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private scully: ScullyRoutesService
+    private scully: ScullyRoutesService,
+    private highlightService: HighlightService
   ) {}
 }
