@@ -42,7 +42,32 @@ Router ถือว่าเป็นส่วนหนึ่งของ Angula
 
 ก่อนหน้านี้ Router Guards return ได้แค่ `boolean`, `Promise<boolean>` หรือ `Observable<boolean>` เท่านั้น ทำให้เวลาเราอยากทำ Redirectionใน Guard จะต้องทำเองแบบนี้
 
+```ts
+constructor(private authService: AuthService, private router: Router) {}
+
+canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  if (!this.authService.isLoggedIn) {
+    router.navigateByUrl('/login');
+    return false;
+  } else {
+    return true;
+  }
+}
+```
+
 ตั้งแต่ Angular 7.1 เราจะสามารถ return เป็น type `UrlTree` ได้ด้วย ทำให้ไม่ต้องทำ Redirection เองแล้ว (เช่น เรียก Router แล้วใช้ `navigateByUrl`) เพียงแค่ return เป็น `UrlTree` ก็จะทำให้เกิด Navigation ได้แล้วแบบนี้
+
+```ts
+constructor(private authService: AuthService, private router: Router) {}
+
+canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  if (!this.authService.isLoggedIn) {
+    return router.parseUrl('/login');
+  } else {
+    return true;
+  }
+}
+```
 
 นอกจากนี้แล้วยังมีเรื่องของ Guard Priority ซึ่งเป็นการจัดลำดับความสำคัญของ Guard โดย Angular จะวัด Priority จาก 2 วิธีคือ
 
@@ -67,6 +92,18 @@ Router ถือว่าเป็นส่วนหนึ่งของ Angula
 
 ปกติ `runGuardsAndResolvers` จะมีอยู่ 3 Option คือ `always`, `paramsOrQueryParamsChange` และ `paramsChange` โดยเราสามารถใส่ Option ของ `runGuardsAndResolvers` ได้ใน Router แบบนี้
 
+```ts
+RouterModule.forRoot([
+  ...
+  {
+    path: 'home/:id',
+    component: HomeComponent,
+    ...
+    runGuardsAndResolvers: 'paramsChange'
+  }
+])
+```
+
 โดยปกติถ้าเราไม่ใส่ Option `runGuardsAndResolvers` จะถูกเซตเป็น `paramsChange` ซึ่งจะทำให้เกิดการรีรัน Guard และ Resolver เฉพาะเมื่อ Path หรือ Path Param มีการเปลี่ยนแปลงยกตัวอย่างเช่น
 
 - `/app/1` => `/app/2`
@@ -89,31 +126,45 @@ Router ถือว่าเป็นส่วนหนึ่งของ Angula
 
 นอกจากนั้นแล้ว ถ้า Option ทั้งหลายของ `runGuardsAndResolvers` ยังไม่ตอบโจทย์หรือเราอยากจัดการ `runGuardsAndResolvers` มากกว่านี้ เรายังสามารถใส่ Function เพื่อแก้ไขให้ Guard หรือ Resolver สามารถรันตามใจเราต้องการแบบนี้
 
+```ts
+const routes: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent,
+    ...
+    runGuardsAndResolvers: (curr: ActivatedRouteSnapshot, future: ActivatedRouteSnapshot) => {
+      // ใส่ Custom Logic ตามต้องการ
+      return false;
+    }
+  }
+];
+```
+
 ### ส่ง State ระหว่าง Route ง่ายๆ
 
 เมื่อก่อนเวลาเราอยากส่ง State ที่เป็น `object` ข้าม Route วิธีที่ง่ายที่สุดก็คือการสร้าง Service ขึ้นมาอันนึงเพื่อใช้ในการแชร์ State ระหว่าง Route หรือถ่าซับซ้อนขึ้นมาหน่อยอาจจะใช้ State Management อย่างพวก NgRX มาเพื่อช่วยในการจัดการ State
 
 ตั้งแต่ Angular 7.2 เราสามารถส่ง State ระหว่าง Route ได้ง่ายๆ โดยใช้ Property `state` ใน `NavigationExtras` ซึ่งเป็น Option ของ Method อย่าง `navigateByUrl` แบบนี้
 
-```
+```ts
 this.router.navigateByUrl('/list', { state: { userId: 1234 } });
 ```
 
 หรือใช้ใน Method `navigate` แบบนี้
 
-```
+```ts
 this.router.navigate(['/list'], { state: { userId: 1234 } });
 ```
 
 เรายังสามารถใช้ใน Template ได้ด้วยโดยใช้กับ Directive `routerLink` และ`state` Property แบบนี้
 
-```
+```ts
 <a routerLink="/list" [state]="{ userId: 1234 }">Lists</a>
 ```
 
 ส่วนฝั่งที่รับ `state` สามารถนำ `state` มาใช้ได้แบบนี้
 
-```
+```ts
 const navigation = this.router.getCurrentNavigation();
 this.userId = navigation.extras.state ? navigation.extras.state.userId : 0;
 ```

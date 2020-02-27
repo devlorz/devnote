@@ -24,6 +24,7 @@
     "@scullyio/init": "0.0.9",
     "@scullyio/ng-lib": "0.0.18",
     "@scullyio/scully": "0.0.67",
+    "prismjs": "^1.19.0",
     "rxjs": "~6.5.3",
     "tailwindcss": "^1.1.4",
     "tslib": "^1.10.0",
