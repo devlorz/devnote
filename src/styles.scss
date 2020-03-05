@@ -4,6 +4,12 @@
 /* check node_modules/prismjs/themes/ for the available themes */
 @import '~prismjs/themes/prism-tomorrow';
 
+body {
+  // font-family: 'Sarabun', sans-serif;
+  font-family: 'Bai Jamjuree', sans-serif;
+  // font-family: 'Prompt', sans-serif;
+}
+
 .content {
   h3 {
     margin-top: 1.25em;
