@@ -21,17 +21,6 @@ export class ArticleListComponent implements OnInit {
     private title: Title
   ) {
     this.title.setTitle('DevNote - Brief stories for developers');
-    // this.meta.removeTag('og:type');
-    // this.meta.removeTag('title');
-    // this.meta.removeTag('og:title');
-    // this.meta.removeTag('twitter:title');
-    // this.meta.removeTag('description');
-    // this.meta.removeTag('og:description');
-    // this.meta.removeTag('twitter:description');
-    // this.meta.removeTag('twitter:card');
-    // this.meta.removeTag('author');
-    // this.meta.removeTag('og:image');
-    // this.meta.removeTag('twitter:image:src');
     this.meta.updateTag({ name: 'title', content: 'DevNote' });
     // this.meta.updateTag({ name: 'og:type', content: 'article' });
     this.meta.updateTag({ name: 'og:title', content: 'DevNote' });
@@ -50,21 +39,6 @@ export class ArticleListComponent implements OnInit {
       content: 'DevNote - Brief story for developers'
     });
     this.meta.updateTag({ name: 'author', content: 'DevNote' });
-    // this.meta.addTags([
-    // { name: 'title', content: 'DevNote' },
-    // { name: 'og:title', content: 'DevNote' },
-    // { name: 'twitter:title', content: 'DevNote' },
-    // { name: 'description', content: 'DevNote - Brief story for developers' },
-    // {
-    //   name: 'og:description',
-    //   content: 'DevNote - Brief story for developers'
-    // },
-    // {
-    //   name: 'twitter:description',
-    //   content: 'DevNote - Brief story for developers'
-    // },
-    // { name: 'twitter:card', content: 'summary' }
-    // ]);
   }
 
   ngOnInit() {
