@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HighlightService } from './../highlight.service';
 import { Article } from '../interface';
 import {
@@ -30,19 +31,48 @@ export class BlogComponent implements OnInit, AfterViewChecked {
       tap(res => console.log(res)),
       tap((res: Article) => {
         this.title.setTitle(res.title);
-        this.meta.addTags([
-          { name: 'og:type', content: 'article' },
-          { name: 'title', content: res.title },
-          { name: 'og:title', content: res.title },
-          { name: 'twitter:title', content: res.title },
-          { name: 'description', content: res.description },
-          { name: 'og:description', content: res.description },
-          { name: 'twitter:description', content: res.description },
-          { name: 'author', content: 'Nutti Saelor' },
-          { name: 'og:image', content: res.image },
-          { name: 'twitter:image:src', content: res.image },
-          { name: 'twitter:card', content: 'summary_large_image' }
-        ]);
+        this.meta.updateTag({ name: 'title', content: res.title });
+        // this.meta.updateTag({ name: 'og:type', content: 'article' });
+        this.meta.updateTag({ name: 'og:title', content: res.title });
+        this.meta.updateTag({
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        });
+        this.meta.updateTag({ name: 'twitter:title', content: res.title });
+        this.meta.updateTag({
+          name: 'description',
+          content: res.description
+        });
+        this.meta.updateTag({
+          name: 'og:description',
+          content: res.description
+        });
+        this.meta.updateTag({
+          name: 'twitter:description',
+          content: res.description
+        });
+        this.meta.updateTag({ name: 'author', content: 'Nutti Saelor' });
+        this.meta.updateTag({
+          name: 'og:image',
+          content: `${environment.webUrl}${res.image}`
+        });
+        this.meta.updateTag({
+          name: 'twitter:image:src',
+          content: `${environment.webUrl}${res.image}`
+        });
+        // this.meta.addTags([
+        // { name: 'og:type', content: 'article' },
+        // { name: 'title', content: res.title },
+        // { name: 'og:title', content: res.title },
+        // { name: 'twitter:title', content: res.title },
+        // { name: 'description', content: res.description },
+        // { name: 'og:description', content: res.description },
+        // { name: 'twitter:description', content: res.description },
+        // { name: 'author', content: 'Nutti Saelor' },
+        // { name: 'og:image', content: res.image },
+        // { name: 'twitter:image:src', content: res.image },
+        // { name: 'twitter:card', content: 'summary_large_image' }
+        // ]);
       })
     ) as Observable<Article>;
   }
