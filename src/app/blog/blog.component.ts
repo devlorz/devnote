@@ -11,6 +11,7 @@ import { ActivatedRoute, Router, ROUTES } from '@angular/router';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Subscription, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Title, Meta } from '@angular/platform-browser';
 
 declare var ng: any;
 
@@ -25,9 +26,25 @@ export class BlogComponent implements OnInit, AfterViewChecked {
   data$: Observable<Article>;
 
   ngOnInit() {
-    this.data$ = this.scully
-      .getCurrent()
-      .pipe(tap(res => console.log(res))) as Observable<Article>;
+    this.data$ = this.scully.getCurrent().pipe(
+      tap(res => console.log(res)),
+      tap((res: Article) => {
+        this.title.setTitle(res.title);
+        this.meta.addTags([
+          { name: 'og:type', content: 'article' },
+          { name: 'title', content: res.title },
+          { name: 'og:title', content: res.title },
+          { name: 'twitter:title', content: res.title },
+          { name: 'description', content: res.description },
+          { name: 'og:description', content: res.description },
+          { name: 'twitter:description', content: res.description },
+          { name: 'author', content: 'Nutti Saelor' },
+          { name: 'og:image', content: res.image },
+          { name: 'twitter:image:src', content: res.image },
+          { name: 'twitter:card', content: 'summary_large_image' }
+        ]);
+      })
+    ) as Observable<Article>;
   }
 
   ngAfterViewChecked() {
@@ -38,6 +55,8 @@ export class BlogComponent implements OnInit, AfterViewChecked {
     private router: Router,
     private route: ActivatedRoute,
     private scully: ScullyRoutesService,
-    private highlightService: HighlightService
+    private highlightService: HighlightService,
+    private title: Title,
+    private meta: Meta
   ) {}
 }

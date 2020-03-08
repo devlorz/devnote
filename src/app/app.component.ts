@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.scully.allRoutes$.subscribe(res => console.log(res));
-    this.scully.available$.subscribe(res => console.log(res));
-    this.scully.topLevel$.subscribe(res => console.log(res));
+    // this.scully.allRoutes$.subscribe(res => console.log(res));
+    // this.scully.available$.subscribe(res => console.log(res));
+    // this.scully.topLevel$.subscribe(res => console.log(res));
   }
 }
