@@ -2,8 +2,9 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, share } from 'rxjs/operators';
 import { Article } from 'src/app/interface';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article-list',
@@ -13,7 +14,27 @@ import { Article } from 'src/app/interface';
 export class ArticleListComponent implements OnInit {
   list$: Observable<Article[]>;
 
-  constructor(public scully: ScullyRoutesService, private router: Router) {}
+  constructor(
+    public scully: ScullyRoutesService,
+    private router: Router,
+    private meta: Meta
+  ) {
+    this.meta.addTags([
+      { name: 'title', content: 'DevNote' },
+      { name: 'og:title', content: 'DevNote' },
+      { name: 'twitter:title', content: 'DevNote' },
+      { name: 'description', content: 'DevNote - Brief story for developers' },
+      {
+        name: 'og:description',
+        content: 'DevNote - Brief story for developers'
+      },
+      {
+        name: 'twitter:description',
+        content: 'DevNote - Brief story for developers'
+      },
+      { name: 'twitter:card', content: 'summary' }
+    ]);
+  }
 
   ngOnInit() {
     this.list$ = this.scully.available$.pipe(
