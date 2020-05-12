@@ -60,19 +60,6 @@ export class BlogComponent implements OnInit, AfterViewChecked {
           name: 'twitter:image:src',
           content: `${environment.webUrl}${res.image}`
         });
-        // this.meta.addTags([
-        // { name: 'og:type', content: 'article' },
-        // { name: 'title', content: res.title },
-        // { name: 'og:title', content: res.title },
-        // { name: 'twitter:title', content: res.title },
-        // { name: 'description', content: res.description },
-        // { name: 'og:description', content: res.description },
-        // { name: 'twitter:description', content: res.description },
-        // { name: 'author', content: 'Nutti Saelor' },
-        // { name: 'og:image', content: res.image },
-        // { name: 'twitter:image:src', content: res.image },
-        // { name: 'twitter:card', content: 'summary_large_image' }
-        // ]);
       })
     ) as Observable<Article>;
   }

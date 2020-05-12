@@ -5,4 +5,5 @@ export interface Article {
   date: string;
   categories: string[];
   image: string;
+  published: boolean;
 }
