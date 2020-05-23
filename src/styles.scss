@@ -43,6 +43,13 @@ body {
     img {
       margin: auto;
     }
+
+    a[title] {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px,
+        rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset;
+      display: block;
+      padding: 1rem;
+    }
   }
 
   ul {

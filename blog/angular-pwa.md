@@ -39,7 +39,7 @@ Progressive Web App หรือเรียกสั้นๆว่า PWA ถ�
 
 PWA หรือ Progressive Web App อิงจากนิยามใน Wikipedia ดังนี้
 
-> **Progressive Web Apps** (**PWAs**) are [web applications](https://en.wikipedia.org/wiki/Web_application 'Web application') that are regular [web pages](https://en.wikipedia.org/wiki/Web_page 'Web page') or [websites](https://en.wikipedia.org/wiki/Website 'Website'), but can appear to the user like traditional [applications](https://en.wikipedia.org/wiki/Application_software 'Application software') or native [mobile applications](https://en.wikipedia.org/wiki/Mobile_app 'Mobile app'). The application type attempts to combine features offered by most modern [browsers](https://en.wikipedia.org/wiki/Web_browser 'Web browser') with the benefits of a [mobile](https://en.wikipedia.org/wiki/Mobile_device 'Mobile device') experience.
+> **Progressive Web Apps** (**PWAs**) are [web applications](https://en.wikipedia.org/wiki/Web_application) that are regular [web pages](https://en.wikipedia.org/wiki/Web_page) or [websites](https://en.wikipedia.org/wiki/Website), but can appear to the user like traditional [applications](https://en.wikipedia.org/wiki/Application_software) or native [mobile applications](https://en.wikipedia.org/wiki/Mobile_app). The application type attempts to combine features offered by most modern [browsers](https://en.wikipedia.org/wiki/Web_browser) with the benefits of a [mobile](https://en.wikipedia.org/wiki/Mobile_device) experience.
 
 อธิบายง่ายๆ Progressive Web App (ต่อไปขอเรียกสั้นๆว่า PWA นะครับ) ก็คือ Web App ธรรมดานี่แหละครับ แต่เพิ่มความสามารถให้คล้ายกับ Mobile Native App โดยเมื่อ User ใช้ PWA แล้วจะได้ความรู้สึกเหมือนใช้ App บนมือถือเลยละครับ ดังนั้นการทำ Web App ธรรมดาให้เป็น PWA จะทำให้เราได้ทั้ง Web ที่ดูบน Web Browser ธรรมดา และยังสามารถทำให้เปิดบนมือถือในสไตล์ของ Mobile Native App อีกด้วย เรียกได้ว่ายิงปืนนัดเดียวได้นกสองตัวเลย
 
@@ -63,10 +63,10 @@ PWA หรือ Progressive Web App อิงจากนิยามใน Wik
 
 โดยในบทความนี้เราจะมาทำ PWA ด้วย Angular กัน ใครอยากรู้เกี่ยวกับ PWA มากขึ้นสามารถอ่านต่อที่บทความด้านล่างได้เลยครับ
 
-[**Progressive web App คือ?**  
+[**Progressive web App คือ?**
 \_ถ้าให้บอกว่า Progrssive Web App เป็น เครื่องมือหรือเทคโนโลยีใหม่ ก็ อาจจะพูดไม่ได้เต็มปากจริงๆ แต่ Progressive Web App…\_medium.com](https://medium.com/@thangman22/progressive-web-app-%E0%B8%84%E0%B8%B7%E0%B8%AD-b6046c0603a8 'https://medium.com/@thangman22/progressive-web-app-%E0%B8%84%E0%B8%B7%E0%B8%AD-b6046c0603a8')[](https://medium.com/@thangman22/progressive-web-app-%E0%B8%84%E0%B8%B7%E0%B8%AD-b6046c0603a8)
 
-[**Progressive Web App คืออะไร และ มาลองกันแบบง่ายๆ วันเดียวเสร็จ**  
+[**Progressive Web App คืออะไร และ มาลองกันแบบง่ายๆ วันเดียวเสร็จ**
 \_ฮัลโหลๆ สวัสดีครับ ช่วงนี้หายไปนาน แอบไปศึกษา Front-end framework อยู่หลายตัว จนไปเจอกับของเล่นใหม่เรียกว่า Progressive…\_medium.com](https://medium.com/@timeff/%E0%B9%82%E0%B8%AD%E0%B9%89%E0%B9%80%E0%B8%A2-progressive-web-app-%E0%B8%A1%E0%B8%B2%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%87%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B9%86-%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B9%80%E0%B8%AA%E0%B8%A3%E0%B9%87%E0%B8%88-b7a2be52ae5b 'https://medium.com/@timeff/%E0%B9%82%E0%B8%AD%E0%B9%89%E0%B9%80%E0%B8%A2-progressive-web-app-%E0%B8%A1%E0%B8%B2%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%87%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B9%86-%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B9%80%E0%B8%AA%E0%B8%A3%E0%B9%87%E0%B8%88-b7a2be52ae5b')[](https://medium.com/@timeff/%E0%B9%82%E0%B8%AD%E0%B9%89%E0%B9%80%E0%B8%A2-progressive-web-app-%E0%B8%A1%E0%B8%B2%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%87%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B9%86-%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B9%80%E0%B8%AA%E0%B8%A3%E0%B9%87%E0%B8%88-b7a2be52ae5b)
 
 ---
@@ -192,7 +192,7 @@ ng add @angular/pwa
 
 สำหรับการ setting ไฟล์ `manifest.json` ง่ายๆ ก็จะมีประมาณนี้ครับ สำหรับใครอยากศึกษาการตั้งค่าไฟล์ `manifest.json` อ่านรายละเอียดจากลิ้งค์ด้านล่างนี้ได้เลยครับ
 
-[**The Web App Manifest | Web Fundamentals | Google Developers**  
+[**The Web App Manifest | Web Fundamentals | Google Developers**
 \_The web app manifest is a JSON file that gives you the ability to control how your web app or site appears to the user…\_developers.google.com](https://developers.google.com/web/fundamentals/web-app-manifest/ 'https://developers.google.com/web/fundamentals/web-app-manifest/')[](https://developers.google.com/web/fundamentals/web-app-manifest/)
 
 ---
@@ -275,20 +275,20 @@ http-server dist/ng6-pwa -o
 
 จบไปแล้วนะครับกับการสร้าง PWA ด้วย Angular CLI สำหรับ Source Code ผมอัพไว้ที่ Github แล้วครับ
 
-[**devlorz/ng6-pokedex**  
+[**devlorz/ng6-pokedex**
 \_Simple Pokedex built by Angular 6 . Contribute to devlorz/ng6-pokedex development by creating an account on GitHub.\_github.com](https://github.com/devlorz/ng6-pokedex 'https://github.com/devlorz/ng6-pokedex')[](https://github.com/devlorz/ng6-pokedex)
 
 สำหรับใครอยากดู Demo เข้าที่ Link ด้านล่างเลยครับ
 
-[**NG6-PWA**  
+[**NG6-PWA**
 \_Edit description_ng-pokedex-f8bf4.firebaseapp.com](https://ng-pokedex-f8bf4.firebaseapp.com/ 'https://ng-pokedex-f8bf4.firebaseapp.com/')[](https://ng-pokedex-f8bf4.firebaseapp.com/)
 
 ขอบคุณทุกคนที่อ่านมาจนจบบทความนะครับ มีอะไรสามารถติชมได้นะครับ ถ้าชอบก็ _กด clap กด share_ ได้นะครับ
 
 สำหรับใครที่อยากอัพเดทบทความหรือข่าวสารใหม่ๆก่อนใครกดไลค์เพจตามลิ้งค์ด้านล่างนี้ได้เลย
 
-[**DevNote**  
-\_DevNote. 539 likes · 139 talking about this. Brief stories for developers_www.facebook.com](https://www.facebook.com/devnoteio/ 'https://www.facebook.com/devnoteio/')[](https://www.facebook.com/devnoteio/)
+[**DevNote**
+\_DevNote.Brief stories for developers_www.facebook.com](https://www.facebook.com/devnoteio/ 'https://www.facebook.com/devnoteio/')[](https://www.facebook.com/devnoteio/)
 
 ไว้เจอกันใหม่บทความ สำหรับวันนี้ สวัสดีครับ \_/|\\\_
 
@@ -296,23 +296,23 @@ http-server dist/ng6-pwa -o
 
 ### อ้างอิง
 
-[**Progressive Web Apps | Web | Google Developers**  
+[**Progressive Web Apps | Web | Google Developers**
 \_Lighthouse, an open-source, automated tool for improving the quality of your Progressive Web Apps, eliminates much of…\_developers.google.com](https://developers.google.com/web/progressive-web-apps/ 'https://developers.google.com/web/progressive-web-apps/')[](https://developers.google.com/web/progressive-web-apps/)
 
-[**Angular Docs**  
+[**Angular Docs**
 \_Edit description_angular.io](https://angular.io/guide/service-worker-intro 'https://angular.io/guide/service-worker-intro')[](https://angular.io/guide/service-worker-intro)
 
-[**Building A PWA Using Angular 6**  
+[**Building A PWA Using Angular 6**
 \_Throughout this tutorial, we'll be using Angular 6 to build a Progressive Web Application, step by step, implementing…\_www.smashingmagazine.com](https://www.smashingmagazine.com/2018/09/pwa-angular-6/ 'https://www.smashingmagazine.com/2018/09/pwa-angular-6/')[](https://www.smashingmagazine.com/2018/09/pwa-angular-6/)
 
-[**A new Angular Service Worker — creating automatic progressive web apps. Part 1: theory**  
+[**A new Angular Service Worker — creating automatic progressive web apps. Part 1: theory**
 \_Announcement: There is “Part 2: practice” of this article is available.\_medium.com](https://medium.com/progressive-web-apps/a-new-angular-service-worker-creating-automatic-progressive-web-apps-part-1-theory-37d7d7647cc7 'https://medium.com/progressive-web-apps/a-new-angular-service-worker-creating-automatic-progressive-web-apps-part-1-theory-37d7d7647cc7')[](https://medium.com/progressive-web-apps/a-new-angular-service-worker-creating-automatic-progressive-web-apps-part-1-theory-37d7d7647cc7)
 
-[**A new Angular Service Worker — creating automatic progressive web apps. Part 2: practice**  
+[**A new Angular Service Worker — creating automatic progressive web apps. Part 2: practice**
 \_Announcement: I present about Angular Service Worker this Tuesday, November 7 at AngularConnect conference in London…\_medium.com](https://medium.com/google-developer-experts/a-new-angular-service-worker-creating-automatic-progressive-web-apps-part-2-practice-3221471269a1 'https://medium.com/google-developer-experts/a-new-angular-service-worker-creating-automatic-progressive-web-apps-part-2-practice-3221471269a1')[](https://medium.com/google-developer-experts/a-new-angular-service-worker-creating-automatic-progressive-web-apps-part-2-practice-3221471269a1)
 
-[**Angular 5 Service Worker**  
+[**Angular 5 Service Worker**
 \_This post has been published first on CodingTheSmartWay.com.\_medium.com](https://medium.com/codingthesmartway-com-blog/angular-5-service-worker-b722e571e306 'https://medium.com/codingthesmartway-com-blog/angular-5-service-worker-b722e571e306')[](https://medium.com/codingthesmartway-com-blog/angular-5-service-worker-b722e571e306)
 
-[**Angular 5 Service Worker - Hacker News PWA Tutorial**  
+[**Angular 5 Service Worker - Hacker News PWA Tutorial**
 \_Learn how to build a realtime Hacker News PWA from scratch with an Angular 5 Service Worker.\_angularfirebase.com](https://angularfirebase.com/lessons/hnpwa-angular-5-progressive-web-app-service-worker-tutorial/ 'https://angularfirebase.com/lessons/hnpwa-angular-5-progressive-web-app-service-worker-tutorial/')[](https://angularfirebase.com/lessons/hnpwa-angular-5-progressive-web-app-service-worker-tutorial/)

@@ -186,17 +186,17 @@ this.userId = navigation.extras.state ? navigation.extras.state.userId : 0;
 
 ### References
 
-[**New in Angular 7: Better Navigations**  
+[**New in Angular 7: Better Navigations**
 \_In Angular 7, there can be only one active navigation. Learn how this is implemented internally, and how you can…\_blog.angularindepth.com](https://blog.angularindepth.com/new-in-angular-7-better-navigations-79267db452c0 'https://blog.angularindepth.com/new-in-angular-7-better-navigations-79267db452c0')[](https://blog.angularindepth.com/new-in-angular-7-better-navigations-79267db452c0)
 
-[**New in Angular v7.1: Updates to the Router**  
+[**New in Angular v7.1: Updates to the Router**
 \_Stay up to date with the latest changes to the Angular Router_blog.angularindepth.com](https://blog.angularindepth.com/new-in-angular-v7-1-updates-to-the-router-fd67d526ad05 'https://blog.angularindepth.com/new-in-angular-v7-1-updates-to-the-router-fd67d526ad05')[](https://blog.angularindepth.com/new-in-angular-v7-1-updates-to-the-router-fd67d526ad05)
 
-[**What's new in Angular 7.2?**  
+[**What's new in Angular 7.2?**
 \_Angular 7.2.0 is here! Not a lot of new features in this release: the Angular team is still mainly focused on the Ivy…\_blog.ninja-squad.com](https://blog.ninja-squad.com/2019/01/07/what-is-new-angular-7.2/ 'https://blog.ninja-squad.com/2019/01/07/what-is-new-angular-7.2/')[](https://blog.ninja-squad.com/2019/01/07/what-is-new-angular-7.2/)
 
-[**Explore Angular Router's runGuardsAndResolvers**  
+[**Explore Angular Router's runGuardsAndResolvers**
 \_Learn how we can use new options introduced for the runGuardsAndResolvers setting for the Angular Router configuration…\_juristr.com](https://juristr.com/blog/2019/01/Explore-Angular-Routers-runGuardsAndResolvers/?utm_campaign=Angular%2BWeekly&utm_medium=email&utm_source=Angular_Weekly_28 'https://juristr.com/blog/2019/01/Explore-Angular-Routers-runGuardsAndResolvers/?utm_campaign=Angular%2BWeekly&utm_medium=email&utm_source=Angular_Weekly_28')[](https://juristr.com/blog/2019/01/Explore-Angular-Routers-runGuardsAndResolvers/?utm_campaign=Angular%2BWeekly&utm_medium=email&utm_source=Angular_Weekly_28)
 
-[**Better Redirects in Angular Route Guards**  
+[**Better Redirects in Angular Route Guards**
 \_Angular version 7.1 not only comes with bugfixes but includes also a bunch of new features. In this post I'd like to…\_juristr.com](https://juristr.com/blog/2018/11/better-route-guard-redirects/ 'https://juristr.com/blog/2018/11/better-route-guard-redirects/')[](https://juristr.com/blog/2018/11/better-route-guard-redirects/)
