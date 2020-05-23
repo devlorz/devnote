@@ -18,7 +18,7 @@ image: 'assets/introduce-ivy/asset-1.jpeg'
 
 ส่วนทางฝั่ง Angular มีทั้งสิ้น เอ่อ… 1 Session ด้วยกันครับ เพราะเพิ่งจัดหนักไปในงาน [NgConf 2018](https://www.youtube.com/user/ngconfvideos/videos) นั่นเอง โดยใน Session ของ Angular เริ่มด้วยคุณ [Stephen Fluin](https://twitter.com/stephenfluin) ได้มาเล่าถึงโมเมนตัมของ Angular และสถานการณ์ปัจจุบันของ Angular ครับ นอกจากนั้นแล้วยังได้เล่าถึงสิ่งใหม่ๆใน Angular 6 อีกด้วย _สำหรับใครยังไม่รู้ว่ามีอะไรใหม่ใน Angular 6 บ้างอ่านต่อในบทความด้านล่างได้เลยจ้า_
 
-[**มีอะไรใหม่ใน Angular 6**  
+[**มีอะไรใหม่ใน Angular 6**
 \_ได้ฤกษ์เปิดตัวซะทีสำหรับ Angular เวอร์ชั่น 6 เราไปดูกันดีกว่าว่ามีอะไรใหม่ใน Angular 6 บ้าง_medium.com](https://medium.com/@leelorz6/%E0%B8%A1%E0%B8%B5%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B9%83%E0%B8%99-angular-6-ef854b2d72a7 'https://medium.com/@leelorz6/%E0%B8%A1%E0%B8%B5%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B9%83%E0%B8%99-angular-6-ef854b2d72a7')[](https://medium.com/@leelorz6/%E0%B8%A1%E0%B8%B5%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B9%83%E0%B8%99-angular-6-ef854b2d72a7)
 
 หลังจากพูด 2 หัวข้อแรกจบแล้ว ก็เป็นเรื่องของอนาคตของ Angular โดยคุณ [Kara Erickson](https://twitter.com/karaforthewin) ได้มาเล่าถึง Render Engine ตัวใหม่ของ Angular ที่มีชื่อว่า Ivy และเบื้องหลังการทำงานของ Ivy ว่าแตกต่างกับ Angular เวอร์ชั่นปัจจุบันอย่างไร โดยเนื้อหาก็จะคล้ายๆ ใน NgConf ผมก็เลยจะมาสรุปรวมกันในบทความนี้ครับ
@@ -170,8 +170,8 @@ Locality แปลง่ายๆก็คือเวลา Angular จะท�
 
 _สำหรับใครที่อยากอัพเดทไวก่อนใคร กดไลค์เพจด้านล่างได้เลยจ้า_
 
-[**DevNote**  
-\_DevNote. 11 likes · 16 talking about this. Blogger_www.facebook.com](https://www.facebook.com/DevNote-158479824842502/ 'https://www.facebook.com/DevNote-158479824842502/')[](https://www.facebook.com/DevNote-158479824842502/)
+[**DevNote**
+\_DevNote.Brief stories for developers_www.facebook.com](https://www.facebook.com/devnoteio/ 'https://www.facebook.com/devnoteio/')[](https://www.facebook.com/DevNote-158479824842502/)
 
 ---
 
@@ -179,5 +179,5 @@ _สำหรับใครที่อยากอัพเดทไวก่�
 
 [![New in Angular](https://img.youtube.com/vi/jnp_ny4SOQE/0.jpg)](https://www.youtube.com/watch?v=jnp_ny4SOQE)
 
-[**What to Expect in Angular 6 and Beyond**  
+[**What to Expect in Angular 6 and Beyond**
 \_Having recently attended ng-conf 2018, where the Angular core team announced that Angular 6 is "dangerously close to…\_blog.rangle.io](http://blog.rangle.io/dangerously-close-to-release-what-to-expect-in-angular-6-and-beyond/ 'http://blog.rangle.io/dangerously-close-to-release-what-to-expect-in-angular-6-and-beyond/')[](http://blog.rangle.io/dangerously-close-to-release-what-to-expect-in-angular-6-and-beyond/)
