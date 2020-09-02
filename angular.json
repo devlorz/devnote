@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "devnote"
+  "defaultProject": "devnote",
+  "cli": {
+    "analytics": false
+  }
 }
