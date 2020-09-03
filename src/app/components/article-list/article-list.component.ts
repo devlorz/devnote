@@ -3,7 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Article } from 'src/app/interface';
 
 @Component({
@@ -43,7 +43,7 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit() {
     this.list$ = this.scully.available$.pipe(
-      tap((res) => console.log(res)),
+      // tap((res) => console.log(res)),
       map((items: Article[]) =>
         items
           .filter((item) => item.published)

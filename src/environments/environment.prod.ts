@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  webUrl: 'https://devnote.netlify.com/'
+  webUrl: 'https://devnote.me/',
 };
