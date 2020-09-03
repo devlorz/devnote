@@ -1,19 +1,19 @@
 <ng-container *ngIf="data$ | async as data">
   <h1
     class="text-3xl lg:text-4xl content m-auto mb-4 font-semibold"
-    style="max-width: 680px; width: -webkit-fill-available;"
+    style="max-width: 680px; width: -webkit-fill-available"
   >
     {{ data.title }}
   </h1>
   <div
     class="content flex mb-8"
-    style="max-width: 680px; width: -webkit-fill-available;"
+    style="max-width: 680px; width: -webkit-fill-available"
   >
     <img src="assets/profile.jpeg" alt="" class="h-12 w-12 rounded-full mr-4" />
     <div>
       <div class="name text-base">Nutti Saelor</div>
       <div class="date text-sm">
-        {{ data.date | date: 'longDate' }} • ☕️ 3 min read
+        {{ data.date | date: 'longDate' }} • ☕️ 5 min read
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
 
 <!-- This is where Scully will inject the static HTML -->
 <div
-  style="max-width: 680px; width: -webkit-fill-available;"
+  style="max-width: 680px; width: -webkit-fill-available"
   class="content m-auto min-w-0"
 >
   <scully-content></scully-content>
