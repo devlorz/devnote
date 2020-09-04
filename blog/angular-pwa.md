@@ -18,14 +18,14 @@ Progressive Web App หรือเรียกสั้นๆว่า PWA ถ�
 
 ### สารบัญ
 
-- [ยาวไปไม่อ่าน](blog/angular-pwa#ยาวไปไม่อ่าน)
-- [PWA คืออะไร](blog/angular-pwa#pwa-คืออะไร)
-- [ทำไมถึงต้องทำ PWA](blog/angular-pwa#ทำไมถึงต้องทำ-pwa)
-- [พบกับพระเอกตัวจริง Service Worker](blog/angular-pwa#พบกับพระเอกตัวจริง-service-worker)
-- [Set Up Project ด้วย Angular CLI](blog/angular-pwa#set-up-project-ด้วย-angular-cli)
-- [ตั้งค่า Service Worker ด้วย ngsw-config.json](blog/angular-pwa#ตั้งค่า-service-worker-ด้วย-ngsw-configjson)
-- [ตั้งค่า App ด้วย manifest.json](blog/angular-pwa#ตั้งค่า-app-ด้วย-manifestjson)
-- [ทดสอบการใช้งาน PWA](blog/angular-pwa#ทดสอบการใช้งาน-pwa)
+- [ยาวไปไม่อ่าน](blog/angular-pwa/#ยาวไปไม่อ่าน)
+- [PWA คืออะไร](blog/angular-pwa/#pwa-คืออะไร)
+- [ทำไมถึงต้องทำ PWA](blog/angular-pwa/#ทำไมถึงต้องทำ-pwa)
+- [พบกับพระเอกตัวจริง Service Worker](blog/angular-pwa/#พบกับพระเอกตัวจริง-service-worker)
+- [Set Up Project ด้วย Angular CLI](blog/angular-pwa/#set-up-project-ด้วย-angular-cli)
+- [ตั้งค่า Service Worker ด้วย ngsw-config.json](blog/angular-pwa/#ตั้งค่า-service-worker-ด้วย-ngsw-configjson)
+- [ตั้งค่า App ด้วย manifest.json](blog/angular-pwa/#ตั้งค่า-app-ด้วย-manifestjson)
+- [ทดสอบการใช้งาน PWA](blog/angular-pwa/#ทดสอบการใช้งาน-pwa)
 
 ---
 
