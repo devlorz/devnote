@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod && npm run scully -- --scanRoutes",
+    "serve": "ng build --prod && npm run scully -- --scanRoutes && npm run scully serve",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
