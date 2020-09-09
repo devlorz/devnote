@@ -123,39 +123,104 @@ _We're going to dive into bundle-size and compilation speed insights. Was Ivy pr
 
 ### Dependency Injection Scope ใหม่
 
-เริ่มด้วยฟีเจอร์ใหม่อันแรกเลยใน Angular 9 จะมีทางเลือกให้ใส่ providedIn เวลาสร้าง service ที่นอกจาก root ละครับ โดยจะมีที่เพิ่มมาคือ any และ platform ไปดูต่อในรูปได้เลยครับว่าแต่ละอันมีความแตกต่างยังไงบ้าง
+เริ่มด้วยฟีเจอร์ใหม่อันแรกเลยใน Angular 9 จะมีทางเลือกให้ใส่ providedIn เวลาสร้าง service ที่นอกจาก root ละครับ โดยจะมี scope ที่เพิ่มมาคือ any และ platform ลองไปดูตัวอย่างในโค้ดด้านล่างนี้ได้เลยครับ
 
-<figure>
-  <img src="assets/angular-9/asset-7.png" alt="New Dependency Injection Scope"/>
-  <figcaption>
-    Dependency Injection Scope ใหม่
-  </figcaption>
-</figure>
+```ts
+import { Injectable } from '@angular/core';
 
-### CSS ที่ถูกปรับปรุง
+// provide service ใน root
+// injector (Application Level)
+@Injectable({
+  providedIn: 'root',
+})
+export class SomeService {}
 
-Angular 9 มีการปรับปรุงเรื่อง CSS class และ style binding ครับ โดยก่อน Angular 9 ถ้ามีการ binding class หรือ style ตัวเดียวกัน ตัวที่โดน binding หลังสุดจะชนะ และจะ override ตัวที่โดน apply ก่อนหน้าครับ ซึ่งกระบวนการแบบนี้ไม่ค่อย predictable เท่าไหร่ ใน Angular 9 เลยมีการปรับให้มีเรื่อง Styling Precedence ขึ้นมาโดยจะเรียงลำดับความสำคัญจากสูงไปต่ำดังนี้ครับ
+// provide service ใน root injector
+// (Module ที่ไม่ใช่ Lazy Load) และ
+// provide ใน Module (Lazy Load
+// Module) ทำให้ได้ instance ทุกๆ
+// Lazy Load Module
+@Injectable({
+  providedIn: 'any',
+})
+export class AnotherService {}
+
+// provide service ใน platform injector
+// ซึ่งจะถูกแชร์กับทุก App ใน Platform เดียวกัน
+// เช่น Angular Elements ที่อยู่ในหน้าเดียวกัน
+@Injectable({
+  providedIn: 'platform',
+})
+export class JustAnotherService {}
+```
+
+### ยกเครื่อง CSS ใหม่
+
+#### Styling Precedence
+
+ใน Angular 9 มีการปรับปรุงเรื่อง CSS Class และ Style binding
+
+โดยก่อน Angular 9 ถ้ามีการ Binding Class หรือ Style ตัวเดียวกัน Style ตัวที่โดน binding หลังสุดจะ override Style ตัวที่โดน apply ก่อนหน้าครับ
+
+ซึ่งกระบวนการแบบนี้คาดเดาไม่ได้เท่าไหร่ ใน Angular 9 เลยเพิ่ม Styling Precedence ขึ้นมาโดยจะเรียงลำดับความสำคัญจากสูงไปต่ำดังนี้
 
 Template binding > Directive host binding > Component host binding
 
-class หรือ style binding ที่มีความ specific หรือเฉพาะเจาะจงกว่าก็จะมีความสำคัญสูงกว่าครับ และ class/style ที่เป็น static จะมีความสำคัญต่ำสุดครับ
+Class/Style binding ที่มีความเจาะจงกว่าก็จะมีความสำคัญสูงกว่าส่วน Class/Style ที่เป็น static จะมีความสำคัญต่ำสุดครับ
 
-นอกจากนั้นแล้ว เรายังสามารถ delegate style เพื่อให้ไปใช้ตัวที่มีลำดับความสำคัญต่ำกว่าได้ โดยเซ็ตค่าให้เป็น undefined ครับ แต่ถ้าอยากให้เอา style นั้นออกไปเลย ให้เซ็ต style binding นั้นเป็น null แทนครับ
+นอกจากนั้นแล้วเรายังสามารถ Delegate style เพื่อให้ไปใช้ตัวที่มีลำดับความสำคัญต่ำกว่าได้โดยทำการเซ็ตค่าให้เป็น undefined
+
+แต่ถ้าอยากเอา Style นั้นออกไปเลย ให้เซ็ต Style binding นั้นเป็น null แทน
+
+ดูตัวอย่างเรื่อง Styling Precedence ในโค้ดด้านล่างได้เลยครับ
+
+```html
+<!-- class.special เป็น Template binding จะ override dirWithClassBinding -->
+<div [class.special]="isSpecial" dirWithClassBinding>Some text.</div>
+
+<!-- ถ้า styleExpr มีค่าจะ override style="color: blue" ที่เป็น static -->
+<div style="color: blue" [style]="styleExpr">Some text.</div>
+
+<!-- ถ้า classExpr เป็น undefined จะ delegate class binding ไปที่ class="special" แทน -->
+<div class="special" [class]="classExpr">Some text.</div>
+
+<!-- ถ้า styleExpr เป็น null style.color จะถูกเอาออกไป -->
+<div [style.color]="styleExpr">Some text.</div>
+```
+
+ส่วนถ้าใครอยากศึกษาเรื่อง Styling Precedence เพิ่มเติม ดูต่อในลิ้งค์ด้านล่างนี้ได้เลย
+
+[**Styling Precedence**
+_A single HTML element can have its CSS class list and style values bound to multiple sources (for example, host bindings from multiple directives)._](https://v9.angular.io/guide/template-syntax#styling-precedence 'https://v9.angular.io/guide/template-syntax#styling-precedence')
 
 #### ซัพพอร์ต CSS Customer Property
 
-Angular 9 นั้นซัพพอร์ต CSS Custom Property แล้วครับ
+CSS Custom Property คืออะไร?
 
-CSS Custom Property คืออะไร? CSS Custom Property หรือ CSS Variable ก็คือตัวแปรในไฟล์ CSS นั่นเอง โดนเราสามารถประกาศตัวแปรในไฟล์ CSS โดยใช้ CSS Custom Property ครับ (ใช้ตัวแปรได้โดยไม่ต้องใช้ preprocessor อย่างพวก LESS หรือ SASS) อ่านรายละเอียดได้ในลิ้งค์นี้เลย https://developer.mozilla.org/…/CSS/Using_CSS_custom_proper…
+CSS Custom Property หรือ CSS Variable ก็คือตัวแปรใน CSS นั่นเอง
+ทำให้เราสามารถใช้ตัวแปรใน CSS ได้แล้วโดยไม่ต้องใช้ preprocessor อย่างพวก LESS หรือ SASS
 
-ตั้งแต่ Angular 9 เราสามารถทำการ binding ค่าให้กับ CSS Custom Property ได้แล้ว ดูตัวอย่างในรูปด้านล่างได้เลย
+ผลจากการทำ Style Refactoring ของทีม Angular ทำให้ใน Angular 9 สามารถ binding ค่ากับ CSS Custom Property ได้แล้วแบบนี้
 
-### TestBed.inject API ใหม่ ไฉไลกว่าเดิม
+```html
+<div [style.--main-border-color]=" '#CCC' ">
+  <p style="border: 1px solid var(--main-border-color)">hi</p>
+</div>
+```
 
-มาพูดถึงเรื่อง Test กันบ้าง
-ใน Angular 9 TestBed.get ถูก deprecate แล้วเพราะ return type เป็น any ใน Angular 9 เลยมีตัวใหม่มาแทนคือ TestBed.inject ที่ทำหน้าที่เหมือน TestBed.get ทุกอย่างแต่เป็น version ที่ Type Safe ครับ
+### TestBed.inject แทน TestBed.get
 
-ดูตัวอย่างในรูปได้เลย
+ใน Angular 9 TestBed.get ถูก deprecate แล้วเพราะไม่เป็น Type Safe (return type เป็น any)
+
+ใน Angular 9 เลยมีตัวใหม่มาแทนคือ TestBed.inject ที่ทำหน้าที่เหมือน TestBed.get ทุกอย่างแต่เป็น version ที่ Type Safe ครับ
+
+```ts
+// ก่อน Angular 9 ต้อง cast type แบบนี้
+const service = TestBed.get(MyService) as MyService;
+
+// Angular 9 ไม่ต้อง cast type แล้ว
+const service = TestBed.inject(MyService);
+```
 
 ### ฟีเจอร์ใหม่ของ Angular CLI
 
@@ -197,3 +262,11 @@ Angular 9 มาพร้อมกับ Concept Test แบบใหม่ท�
 ### New in Angular Universal
 
 ### Support TypeScript 3.7
+
+---
+
+[**Version 9 of Angular Now Available — Project Ivy has arrived!**
+_The 9.0.0 release of Angular is here! This is a major release that spans the entire platform, including the framework, Angular Material, and the CLI._](https://blog.angular.io/version-9-of-angular-now-available-project-ivy-has-arrived-23c97b63cfa3 'https://blog.angular.io/version-9-of-angular-now-available-project-ivy-has-arrived-23c97b63cfa3')
+
+[**What's new in Angular 9.0?**
+_Ivy, sweet Ivy This is a long awaited release for the community, as Ivy is now the default compiler/renderer in Angular_](https://blog.ninja-squad.com/2020/02/07/what-is-new-angular-9.0/ 'https://blog.ninja-squad.com/2020/02/07/what-is-new-angular-9.0/')
