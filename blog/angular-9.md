@@ -224,49 +224,285 @@ const service = TestBed.inject(MyService);
 
 ### ฟีเจอร์ใหม่ของ Angular CLI
 
+ใน Angular 9 ได้เพิ่มความสามารถของ Angular CLI มามากมาย ไปดูกันเลยดีกว่าว่ามีอะไรบ้างครับ
+
+1. สร้าง Interceptor
+
+```bash
+$ ng generate interceptor auth
+```
+
+1. สร้าง Component แบบ Container
+
+```bash
+$ ng generate component --type container hello
+```
+
+3. สร้าง Guard ที่ implement CanDeactivate
+
+```bash
+$ ng generate guard auth --implements=CanDeactivate
+```
+
+4. อัพเดท Angular พร้อมสร้าง commit
+
+```bash
+$ ng update --createCommits
+```
+
+5. build ด้วย configuration หลายตัว
+
+```bash
+$ ng build --configuration=production,thai
+```
+
+6. สร้าง project ใหม่ด้วย strict TypeScript config
+
+```bash
+$ ng new project-name --strict
+```
+
 ### Strict Template Type Checking
 
-ใน Angular 9 มีโหมด Template Type Check แบบใหม่ที่ชื่อว่า strict mode โดยเราสามารถเปิด strict mode ได้โดยใส่ flag "strictTemplates": true ในไฟล์ tsconfig.json (ดูตัวอย่างในรูป 1)
+ใน Angular 9 มีโหมด Template Type Check แบบใหม่ที่ชื่อว่า Strict mode โดยเราสามารถเปิด Strict mode ได้โดยใส่ flag ในไฟล์ tsconfig.json แบบนี้
 
-โดยใน strict mode Angular จะเช็ค type ใน template ได้ดีขึ้นไม่ว่าจะเป็นเช็ค type ของ Input ของ Component, Infer type ของ component/directive, Infer type ใน embedded view(*ngIf, *ngFor, ng-template) ได้ถูกต้อง, Infer type ของ event ได้ถูกต้อง (ดูตัวอย่างในรูป 2)
+```json
+{
+  ...
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictTemplates": true
+  }
+}
+```
 
-ดูรายละเอียดเพิ่มเติมเรื่อง template type checking ได้ที่ลิ้งค์นี้ครับ https://angular.io/guide/template-typecheck
+โดยใน Strict mode Angular จะเช็ค type ใน template ได้ดีขึ้น
+
+ไม่ว่าจะเป็นเช็ค type ของ Input ของ Component, Infer type ของ Component/Directive, Infer type ใน embedded view(*ngIf, *ngFor, ng-template) ได้ถูกต้อง, Infer type ของ event ได้ถูกต้อง
+
+```html
+<!-- ใน Strict mode สามารถเช็ค type ของ message ได้ -->
+<app-hello [message]="'Hello'"></app-hello>
+
+<!-- ใน Strict mode ยังเช็ค type ของ user ที่อยู่ใน *ngFor -->
+<!-- รวมทั้งเช็ค type ของ property address และ city ได้ด้วย -->
+<div *ngFor="let user of users">
+  <h2>{{ config.title }}</h2>
+  <span>City: {{ user.address.city }}</span>
+</div>
+```
+
+ดูรายละเอียดเพิ่มเติมเรื่อง template type checking ได้ที่ลิ้งค์นี้เลยครับ
+
+[**Template type checking**
+_Overview of template type checking Just as TypeScript catches type errors in your code_](https://v9.angular.io/guide/template-typecheck 'https://v9.angular.io/guide/template-typecheck')
 
 ### Component ใหม่
 
-วันนี้มาเรื่องเบาๆกันบ้าง ว่าด้วยเรื่อง component ใหม่ จากทีม Angular เอง ที่มีมาให้ใช้กันใน Angular 9 ครับ
+#### Youtube Component
 
-โดยมีมาให้ใช้กัน 2 ตัวคือ
+Install โดยใช้คำสั่ง
 
-1. Youtube Component
-   install โดยใช้คำสั่ง npm install @angular/youtube-player
+```bash
+npm install @angular/youtube-player
+```
 
-2. Google Map Component
-   install โดยใช้คำสั่ง npm install @angular/google-maps
-   โดยจะมีให้ใช้งานทั้งตัว Map เอง ตัว Marker และตัว Info Window ครับ
+วิธีใช้
 
-ดูตัวอย่างในรูปด้านล่างได้เลยครับ
+```ts
+// example-module.ts
+import { NgModule } from '@angular/core';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+
+@NgModule({
+  imports: [YouTubePlayerModule],
+  declarations: [YoutubePlayerExample],
+})
+export class YoutubePlayerExampleModule {}
+
+// example-component.ts
+@Component({
+  template: '<youtube-player videoId="vRXZj0DzXIA"></youtube-player>',
+  selector: 'youtube-player-example',
+})
+class YoutubePlayerExample implements OnInit {
+  ngOnInit() {
+    const tag = document.createElement('script');
+
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(tag);
+  }
+}
+```
+
+#### Google Map Component
+
+install โดยใช้คำสั่ง
+
+```bash
+npm install @angular/google-maps
+```
+
+จากนั้นโหลด Google Map JavaScript API แบบนี้
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<head>
+  ...
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+</head>
+```
+
+หรือเราจะ Lazy Load API โดยใช้ HttpClient jsonp เพื่อรอให้ API โหลดเสร็จแล้วค่อยโชว์ Google Map Component แบบนี้
+
+```ts
+// google-maps-demo.module.ts
+
+import { NgModule } from '@angular/core';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+
+import { GoogleMapsDemoComponent } from './google-maps-demo.component';
+
+@NgModule({
+  declarations: [GoogleMapsDemoComponent],
+  imports: [
+    CommonModule,
+    GoogleMapsModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
+  ],
+  exports: [GoogleMapsDemoComponent],
+})
+export class GoogleMapsDemoModule {}
+
+// google-maps-demo.component.ts
+
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
+@Component({
+  selector: 'google-maps-demo',
+  templateUrl: './google-maps-demo.component.html',
+})
+export class GoogleMapsDemoComponent {
+  apiLoaded: Observable<boolean>;
+
+  constructor(httpClient: HttpClient) {
+    this.apiLoaded = httpClient
+      .jsonp(
+        'https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE',
+        'callback'
+      )
+      .pipe(
+        map(() => true),
+        catchError(() => of(false))
+      );
+  }
+}
+```
+
+```html
+<!-- google-maps-demo.component.html -->
+
+<div *ngIf="apiLoaded | async">
+  <google-map></google-map>
+</div>
+```
+
+วิธีใช้ Google Map Component เราสามารถใส่ option ผ่าน input ได้แบบนี้
+
+```html
+<google-map [options]="options"></google-map>
+```
+
+```ts
+options: google.maps.MapOptions = {
+  center: { lat: 40, lng: -20 },
+  zoom: 4,
+};
+```
+
+หรือจะแยกกันเป็นคนละ input แบบนี้เลยก็ได้ครับ
+
+```html
+<google-map [center]="center" [zoom]="zoom"></google-map>
+```
+
+```ts
+center: google.maps.LatLngLiteral = { lat: 40, lng: -20 };
+zoom = 4;
+```
+
+---
 
 ### New in Localization
 
-Angular 9 มาพร้อมกับการซัพพอร์ต i18n ซึ่งเป็นการยกเครื่องใหม่ และมาพร้อมกับ package ใหม่ที่มีชื่อว่า @angular/localize โดยสามารถ install ด้วยคำสั่ง ng add @angular/localize ซึ่งi18n ใน Angular 9 สามารถ Tree Shaking ออกไปได้ด้วยถ้าเราไม่ได้ใช้งาน
+Angular 9 มาพร้อมกับการซัพพอร์ต i18n ซึ่งเป็นการยกเครื่องใหม่ โดยมาพร้อมกับ package ใหม่ที่มีชื่อว่า @angular/localize
+สามารถ install ด้วยคำสั่ง
 
-นอกจากนั้นแล้วยังสามารถทำ Dynamic Loading Translation และซัพพอร์ตการทำ translation ในไฟล์ Component ได้แล้วครับ ดูตัวอย่างในรูปได้เลย
+```bash
+ng add @angular/localize
+```
+
+ซึ่ง i18n ใน Angular 9 สามารถ Tree Shaking ออกไปได้ด้วยถ้าเราไม่ได้ใช้งาน
+
+นอกจากนั้นแล้วยังสามารถทำ Dynamic Loading Translation และซัพพอร์ตการทำ translation ในไฟล์ Component ด้วย
+
+ทีม Angular ยังบอกอีกว่าด้วยกระบวนการ build แบบใหม่ทำให้ลดเวลาในการ build ถึง 10 เท่าเลยทีเดียว
+
+อ่านเพิ่มเติมเรื่อง i18n ใน Angular 9 ได้ในลิ้งค์นี้เลยครับ
+
+[**Internationalization (i18n)**
+_Application internationalization is a many-faceted area of development, focused on making applications available and user-friendly to a worldwide audience._](https://v9.angular.io/guide/i18n 'https://v9.angular.io/guide/i18n')
 
 ### Component Harnesses
 
-Angular 9 มาพร้อมกับ Concept Test แบบใหม่ที่เรียกว่า Component Harness (ตอนนี้ยังใช้ได้แค่กับ Angular Material เท่านั้นครับ) ซึ่งเอาแนวคิดมาจาก PageObject pattern ครับ
+Angular 9 มาพร้อมกับ Concept Test แบบใหม่ที่เรียกว่า Component Harness ซึ่งเอาแนวคิดมาจาก PageObject pattern ครับ
 
-ซึ่งการ Test ด้วย Component Harness นี้จะเป็นการ Test ที่ไม่ยุ่งกับ Implementation Detail ทำให้ Test มีความ Robust กว่าและยังอ่านง่ายกว่า Test แบบปกติด้วยครับ ดูตัวอย่างในรูปด้านล่างได้เลย
+ซึ่งการ Test ด้วย Component Harness นี้จะเป็นการ Test ที่ไม่ยุ่งกับ Implementation Detail ทำให้ Test มีความ Robust กว่าและยังอ่านง่ายกว่า Test แบบปกติด้วยครับ
+
+ตัวอย่าง Test แบบ Component Harness
+
+```ts
+it('should switch to bug report template', async () => {
+  expect(fixture.debugElement.query('bug-report-form')).toBeNull();
+  const select = await loader.getHarness(MatSelect);
+  await select.clickOptions({ text: 'Bug' });
+  expect(fixture.debugElement.query('bug-report-form')).not.toBeNull();
+});
+```
+
+Angular Material component ส่วนใหญ่จะสามารถเทสด้วย Component Harness ได้แล้ว
+
+และ Component Harness จะถูกเป็นส่วนหนึ่งของ Angular CDK ด้วย
+
+อ่านเรื่อง Component Harness เพิ่มเติมได้ที่ลิ้งค์ด้านล่างได้เลย
+
+[**Using Angular Material's component harnesses in your tests**
+_The Angular CDK provides code for creating component test harnesses. A component harness is a class that lets a test interact with a component via a supported API._](https://v9.material.angular.io/guide/using-component-harnesses 'https://v9.material.angular.io/guide/using-component-harnesses')
+
+---
 
 ### New in Angular Universal
+
+---
 
 ### Support TypeScript 3.7
 
 ---
+
+### References
 
 [**Version 9 of Angular Now Available — Project Ivy has arrived!**
 _The 9.0.0 release of Angular is here! This is a major release that spans the entire platform, including the framework, Angular Material, and the CLI._](https://blog.angular.io/version-9-of-angular-now-available-project-ivy-has-arrived-23c97b63cfa3 'https://blog.angular.io/version-9-of-angular-now-available-project-ivy-has-arrived-23c97b63cfa3')
 
 [**What's new in Angular 9.0?**
 _Ivy, sweet Ivy This is a long awaited release for the community, as Ivy is now the default compiler/renderer in Angular_](https://blog.ninja-squad.com/2020/02/07/what-is-new-angular-9.0/ 'https://blog.ninja-squad.com/2020/02/07/what-is-new-angular-9.0/')
+
+[**A look at major features in the Angular Ivy version 9 release**
+_AOT everywhere, dynamic globalisation, strict mode, Bazel, and much more._](https://indepth.dev/a-look-at-major-features-in-the-angular-ivy-version-9-release/ 'https://indepth.dev/a-look-at-major-features-in-the-angular-ivy-version-9-release/')
