@@ -1,7 +1,7 @@
 ---
 title: 'มีอะไรใหม่ใน Angular 9'
-description: 'Angular 9 มาพร้อม Rendering Engine ตัวใหม่ที่ชื่อว่า Ivy...'
-date: '2020-03-09T16:09:06.761Z'
+description: 'Angular 9 มาพร้อม Rendering Engine ตัวใหม่ที่ชื่อว่า Ivy และมาพร้อมกับฟีเจอร์ที่น่าสนใจอีกมากมาย เรามาดูกันดีกว่าว่าใน Angular 9 มีอะไรที่น่าสนใจกันบ้างครับ'
+date: '2020-09-12T11:35:52.269Z'
 categories:
   - Angular
   - Beginner
@@ -9,7 +9,12 @@ published: true
 image: 'assets/angular-9/asset-1.jpg'
 ---
 
-![](assets/angular-9/asset-1.jpg)
+<figure>
+  <img src="assets/angular-9/asset-1.jpg" alt="Ivy"/>
+  <figcaption>
+    Photo by <a href="https://unsplash.com/@kimberlyfarmer?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Kimberly Farmer</a> on <a href="https://unsplash.com/s/photos/ivy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure>
 
 Angular 9 มาพร้อม Rendering Engine ตัวใหม่ที่ชื่อว่า Ivy และมาพร้อมกับฟีเจอร์ที่น่าสนใจอีกมากมาย เรามาดูกันดีกว่าว่าใน Angular 9 มีอะไรที่น่าสนใจกันบ้างครับ
 
@@ -18,16 +23,16 @@ Angular 9 มาพร้อม Rendering Engine ตัวใหม่ที่�
 ### สารบัญ
 
 - [Ivy นั้นสำคัญไฉน](blog/angular-9/#ivy-นั้นสำคัญไฉน)
-- [Dependency Injection Scope ใหม่](blog/angular-pwa#pwa-คืออะไร)
-- [CSS ที่ถูกปรับปรุง](blog/angular-pwa#ทำไมถึงต้องทำ-pwa)
-- [TestBed.inject API ใหม่ ไฉไลกว่าเดิม](blog/angular-pwa#พบกับพระเอกตัวจริง-service-worker)
-- [ฟีเจอร์ใหม่ของ Angular CLI](blog/angular-pwa#set-up-project-ด้วย-angular-cli)
-- [Strict Template Type Checking](blog/angular-pwa#ตั้งค่า-service-worker-ด้วย-ngsw-configjson)
-- [Component ใหม่](blog/angular-pwa#ตั้งค่า-app-ด้วย-manifestjson)
-- [New in Localization](blog/angular-pwa#ทดสอบการใช้งาน-pwa)
-- [Component Harnesses](blog/angular-pwa#ทดสอบการใช้งาน-pwa)
-- [New in Angular Universal](blog/angular-pwa#ทดสอบการใช้งาน-pwa)
-- [Support TypeScript 3.7](blog/angular-9#suport-typescript-37)
+- [Dependency Injection Scope ใหม่](blog/angular-9/#dependency-injection-scope-ใหม่)
+- [ยกเครื่อง CSS ใหม่](blog/angular-9/#ยกเครื่อง-css-ใหม่)
+- [Strict Template Type Checking](blog/angular-9/#strict-template-type-checking)
+- [ฟีเจอร์ใหม่ของ Angular CLI](blog/angular-9/#ฟีเจอร์ใหม่ของ-angular-cli)
+- [Component ใหม่](blog/angular-9/#component-ใหม่)
+- [Localization แบบใหม่](blog/angular-9/#localization-แบบใหม่)
+- [TestBed.inject](blog/angular-9/#testbedinject)
+- [Component Harnesses](blog/angular-9/#component-harnesses)
+- [TypeScript 3.7](blog/angular-9/#typescript-37)
+- [สรุป](blog/angular-9/#สรุป)
 
 ---
 
@@ -86,14 +91,14 @@ _We're going to dive into bundle-size and compilation speed insights. Was Ivy pr
 
 #### รันเทสได้เร็วขึ้น
 
-ก่อน Angular 9 เวลารันเทส TestBed จะทำการรีคอมไพล์ Component ใหม่ทุกๆครั้ง ระหว่างรันเทสโดยไม่สนว่าจะมีการเปลี่ยนแปลงที่ Component (เช่นถูก override) หรือไม่ แต่ใน Ivy TestBed จะทำการรีคอมไพล์เฉพาะเมื่อ Component มีการเปลี่ยนแปลงครับ ส่งผลให้สามารถรันเทสได้เร็วขึ้น 40-50% เลยทีเดียว
+ก่อน Angular 9 เวลารันเทส TestBed จะทำการรีคอมไพล์ Component ใหม่ทุกครั้งระหว่างรันเทสโดยไม่สนว่าจะมีการเปลี่ยนแปลงที่ Component (เช่นถูก override) หรือไม่ แต่ใน Ivy TestBed จะทำการรีคอมไพล์เฉพาะเมื่อ Component มีการเปลี่ยนแปลงครับ ส่งผลให้สามารถรันเทสได้เร็วขึ้น 40-50% เลยทีเดียว
 
 #### Debug ง่ายขึ้น
 
 ใน Angular 9 ถ้าเราอยู่ใน Dev Mode และเปิด Devtool Console ขึ้นมา เราสามารถเรียกใช้ ng object เพื่อทำอะไรบางอย่างกับ Angular Component ใน Devtool Console ได้ครับ
 
 ยกตัวอย่างเช่น เราสามารถเรียกใช้ Reference ของ Component ที่เลือกอยู่ใน Devtool Console โดยใช้คำสั่ง ng.getComponent($0) โดยที่ $0 คือ Component ที่เลือกอยู่
-พอเราได้ reference ของ Component มาแล้วก็สามารถเปลี่ยนค่า input ของ component นั้นได้ครับ
+พอเราได้ Reference ของ Component มาแล้วก็สามารถเปลี่ยนค่า Input ของ Component นั้นได้ครับ
 
 พอเราเปลี่ยนค่าจนพอใจแล้วถ้าอยากให้ค่าที่เปลี่ยนมีผลกับ Component นั้นให้ใช้คำสั่ง ng.applyChanges
 
@@ -123,7 +128,7 @@ _We're going to dive into bundle-size and compilation speed insights. Was Ivy pr
 
 ### Dependency Injection Scope ใหม่
 
-เริ่มด้วยฟีเจอร์ใหม่อันแรกเลยใน Angular 9 จะมีทางเลือกให้ใส่ providedIn เวลาสร้าง service ที่นอกจาก root ละครับ โดยจะมี scope ที่เพิ่มมาคือ any และ platform ลองไปดูตัวอย่างในโค้ดด้านล่างนี้ได้เลยครับ
+เริ่มด้วยฟีเจอร์ใหม่อันแรกเลยใน Angular 9 จะมีทางเลือกให้ใส่ providedIn เวลาสร้าง service ที่นอกจาก root ละครับ โดยจะมี scope ที่เพิ่มมาคือ any และ platform ลองดูตัวอย่างในโค้ดด้านล่างนี้ได้เลยครับ
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -154,6 +159,8 @@ export class AnotherService {}
 export class JustAnotherService {}
 ```
 
+---
+
 ### ยกเครื่อง CSS ใหม่
 
 #### Styling Precedence
@@ -166,7 +173,7 @@ export class JustAnotherService {}
 
 Template binding > Directive host binding > Component host binding
 
-Class/Style binding ที่มีความเจาะจงกว่าก็จะมีความสำคัญสูงกว่าส่วน Class/Style ที่เป็น static จะมีความสำคัญต่ำสุดครับ
+Class/Style binding ที่มีความเจาะจงกว่าก็จะมีความสำคัญสูงกว่า ส่วน Class/Style ที่เป็น static จะมีความสำคัญต่ำสุดครับ
 
 นอกจากนั้นแล้วเรายังสามารถ Delegate style เพื่อให้ไปใช้ตัวที่มีลำดับความสำคัญต่ำกว่าได้โดยทำการเซ็ตค่าให้เป็น undefined
 
@@ -198,7 +205,7 @@ _A single HTML element can have its CSS class list and style values bound to mul
 CSS Custom Property คืออะไร?
 
 CSS Custom Property หรือ CSS Variable ก็คือตัวแปรใน CSS นั่นเอง
-ทำให้เราสามารถใช้ตัวแปรใน CSS ได้แล้วโดยไม่ต้องใช้ preprocessor อย่างพวก LESS หรือ SASS
+ทำให้เราสามารถใช้ตัวแปรใน CSS ได้โดยไม่ต้องใช้ Preprocessor อย่างพวก LESS หรือ SASS
 
 ผลจากการทำ Style Refactoring ของทีม Angular ทำให้ใน Angular 9 สามารถ binding ค่ากับ CSS Custom Property ได้แล้วแบบนี้
 
@@ -208,19 +215,42 @@ CSS Custom Property หรือ CSS Variable ก็คือตัวแปร�
 </div>
 ```
 
-### TestBed.inject แทน TestBed.get
+---
 
-ใน Angular 9 TestBed.get ถูก deprecate แล้วเพราะไม่เป็น Type Safe (return type เป็น any)
+### Strict Template Type Checking
 
-ใน Angular 9 เลยมีตัวใหม่มาแทนคือ TestBed.inject ที่ทำหน้าที่เหมือน TestBed.get ทุกอย่างแต่เป็น version ที่ Type Safe ครับ
+ใน Angular 9 มีโหมด Template Type Check แบบใหม่ที่ชื่อว่า Strict mode โดยเราสามารถเปิด Strict mode ได้โดยใส่ flag ในไฟล์ tsconfig.json แบบนี้
 
-```ts
-// ก่อน Angular 9 ต้อง cast type แบบนี้
-const service = TestBed.get(MyService) as MyService;
-
-// Angular 9 ไม่ต้อง cast type แล้ว
-const service = TestBed.inject(MyService);
+```json
+{
+  ...
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictTemplates": true
+  }
+}
 ```
+
+โดยใน Strict mode Angular จะเช็ค type ใน template ได้ดีขึ้น ไม่ว่าจะเป็นเช็ค type ของ Input ของ Component, Infer type ของ Component/Directive, Infer type ใน embedded view(*ngIf, *ngFor, ng-template) ได้ถูกต้อง, Infer type ของ event ได้ถูกต้อง
+
+```html
+<!-- ใน Strict mode สามารถเช็ค type ของ message ได้ -->
+<app-hello [message]="'Hello'"></app-hello>
+
+<!-- ใน Strict mode ยังเช็ค type ของ user ที่อยู่ใน *ngFor -->
+<!-- รวมทั้งเช็ค type ของ property address และ city ได้ด้วย -->
+<div *ngFor="let user of users">
+  <h2>{{ config.title }}</h2>
+  <span>City: {{ user.address.city }}</span>
+</div>
+```
+
+ดูรายละเอียดเพิ่มเติมเรื่อง Template type checking ได้ที่ลิ้งค์นี้เลยครับ
+
+[**Template type checking**
+_Overview of template type checking Just as TypeScript catches type errors in your code_](https://v9.angular.io/guide/template-typecheck 'https://v9.angular.io/guide/template-typecheck')
+
+---
 
 ### ฟีเจอร์ใหม่ของ Angular CLI
 
@@ -232,7 +262,7 @@ const service = TestBed.inject(MyService);
 $ ng generate interceptor auth
 ```
 
-1. สร้าง Component แบบ Container
+2. สร้าง Component แบบ Container
 
 ```bash
 $ ng generate component --type container hello
@@ -262,40 +292,7 @@ $ ng build --configuration=production,thai
 $ ng new project-name --strict
 ```
 
-### Strict Template Type Checking
-
-ใน Angular 9 มีโหมด Template Type Check แบบใหม่ที่ชื่อว่า Strict mode โดยเราสามารถเปิด Strict mode ได้โดยใส่ flag ในไฟล์ tsconfig.json แบบนี้
-
-```json
-{
-  ...
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictTemplates": true
-  }
-}
-```
-
-โดยใน Strict mode Angular จะเช็ค type ใน template ได้ดีขึ้น
-
-ไม่ว่าจะเป็นเช็ค type ของ Input ของ Component, Infer type ของ Component/Directive, Infer type ใน embedded view(*ngIf, *ngFor, ng-template) ได้ถูกต้อง, Infer type ของ event ได้ถูกต้อง
-
-```html
-<!-- ใน Strict mode สามารถเช็ค type ของ message ได้ -->
-<app-hello [message]="'Hello'"></app-hello>
-
-<!-- ใน Strict mode ยังเช็ค type ของ user ที่อยู่ใน *ngFor -->
-<!-- รวมทั้งเช็ค type ของ property address และ city ได้ด้วย -->
-<div *ngFor="let user of users">
-  <h2>{{ config.title }}</h2>
-  <span>City: {{ user.address.city }}</span>
-</div>
-```
-
-ดูรายละเอียดเพิ่มเติมเรื่อง template type checking ได้ที่ลิ้งค์นี้เลยครับ
-
-[**Template type checking**
-_Overview of template type checking Just as TypeScript catches type errors in your code_](https://v9.angular.io/guide/template-typecheck 'https://v9.angular.io/guide/template-typecheck')
+---
 
 ### Component ใหม่
 
@@ -337,7 +334,7 @@ class YoutubePlayerExample implements OnInit {
 
 #### Google Map Component
 
-install โดยใช้คำสั่ง
+Install โดยใช้คำสั่ง
 
 ```bash
 npm install @angular/google-maps
@@ -414,7 +411,7 @@ export class GoogleMapsDemoComponent {
 </div>
 ```
 
-วิธีใช้ Google Map Component เราสามารถใส่ option ผ่าน input ได้แบบนี้
+วิธีใช้ Google Map Component เราสามารถใส่ Option ผ่าน Input ได้แบบนี้
 
 ```html
 <google-map [options]="options"></google-map>
@@ -427,7 +424,7 @@ options: google.maps.MapOptions = {
 };
 ```
 
-หรือจะแยกกันเป็นคนละ input แบบนี้เลยก็ได้ครับ
+หรือจะแยกกันเป็นคนละ Input แบบนี้เลยก็ได้ครับ
 
 ```html
 <google-map [center]="center" [zoom]="zoom"></google-map>
@@ -440,9 +437,9 @@ zoom = 4;
 
 ---
 
-### New in Localization
+### Localization แบบใหม่
 
-Angular 9 มาพร้อมกับการซัพพอร์ต i18n ซึ่งเป็นการยกเครื่องใหม่ โดยมาพร้อมกับ package ใหม่ที่มีชื่อว่า @angular/localize
+Angular 9 มาพร้อมกับการซัพพอร์ต i18n ซึ่งเป็นการยกเครื่องใหม่ โดยมาพร้อมกับ Package ใหม่ที่มีชื่อว่า @angular/localize
 สามารถ install ด้วยคำสั่ง
 
 ```bash
@@ -451,7 +448,7 @@ ng add @angular/localize
 
 ซึ่ง i18n ใน Angular 9 สามารถ Tree Shaking ออกไปได้ด้วยถ้าเราไม่ได้ใช้งาน
 
-นอกจากนั้นแล้วยังสามารถทำ Dynamic Loading Translation และซัพพอร์ตการทำ translation ในไฟล์ Component ด้วย
+นอกจากนั้นแล้วยังสามารถทำ Dynamic Loading Translation และซัพพอร์ตการทำ Translation ในไฟล์ Component ด้วย
 
 ทีม Angular ยังบอกอีกว่าด้วยกระบวนการ build แบบใหม่ทำให้ลดเวลาในการ build ถึง 10 เท่าเลยทีเดียว
 
@@ -460,9 +457,27 @@ ng add @angular/localize
 [**Internationalization (i18n)**
 _Application internationalization is a many-faceted area of development, focused on making applications available and user-friendly to a worldwide audience._](https://v9.angular.io/guide/i18n 'https://v9.angular.io/guide/i18n')
 
+---
+
+### TestBed.inject
+
+ใน Angular 9 TestBed.get ถูก deprecate แล้วเพราะไม่เป็น Type Safe (return type เป็น any)
+
+ใน Angular 9 เลยมีตัวใหม่มาแทนคือ TestBed.inject ที่ทำหน้าที่เหมือน TestBed.get ทุกอย่างแต่เป็น version ที่ Type Safe ครับ
+
+```ts
+// ก่อน Angular 9 ต้อง cast type แบบนี้
+const service = TestBed.get(MyService) as MyService;
+
+// Angular 9 ไม่ต้อง cast type แล้ว
+const service = TestBed.inject(MyService);
+```
+
+---
+
 ### Component Harnesses
 
-Angular 9 มาพร้อมกับ Concept Test แบบใหม่ที่เรียกว่า Component Harness ซึ่งเอาแนวคิดมาจาก PageObject pattern ครับ
+Angular 9 มาพร้อมกับ Concept Test แบบใหม่ที่เรียกว่า Component Harness ซึ่งเอาแนวคิดมาจาก PageObject Pattern ครับ
 
 ซึ่งการ Test ด้วย Component Harness นี้จะเป็นการ Test ที่ไม่ยุ่งกับ Implementation Detail ทำให้ Test มีความ Robust กว่าและยังอ่านง่ายกว่า Test แบบปกติด้วยครับ
 
@@ -477,7 +492,7 @@ it('should switch to bug report template', async () => {
 });
 ```
 
-Angular Material component ส่วนใหญ่จะสามารถเทสด้วย Component Harness ได้แล้ว
+Angular Material Component ส่วนใหญ่จะสามารถเทสด้วย Component Harness ได้แล้ว
 
 และ Component Harness จะถูกเป็นส่วนหนึ่งของ Angular CDK ด้วย
 
@@ -488,11 +503,33 @@ _The Angular CDK provides code for creating component test harnesses. A componen
 
 ---
 
-### New in Angular Universal
+### TypeScript 3.7
+
+Angular 9 มาพร้อมกับการซัพพอร์ต TypeScript 3.7 ซึ่งมีฟีเจอร์อันแสนสะดวกอย่าง Optional Chaining และ Nullish Coalescing ครับ
+
+```ts
+// ก่อนมี Optional Chaining
+if (foo && foo.bar && foo.bar.baz) {
+  // ...
+}
+
+// ใช้ Optional Chaining
+if (foo?.bar?.baz) {
+  // ...
+}
+
+// Nullish Coalescing ใช้จัดการกับ null และ undefined เท่านั้น
+// ไม่มีผลกับ Falsy Value
+let x = foo ?? bar();
+```
 
 ---
 
-### Support TypeScript 3.7
+### สรุป
+
+Angular 9 มาพร้อมกับ Rendering Engine ตัวใหม่ที่ชื่อว่า Ivy ซึ่งการมาของ Ivy ทำให้เกิดผลดีหลายอย่างเช่น App มีขนาดเล็กลง, คอมไพล์และเทสได้เร็วขึ้น, Debug ง่ายขึ้น, Error Message เข้าใจง่ายขึ้น
+
+นอกจาก Ivy แล้วยังมีฟีเจอร์ใหม่ๆอีกมากมายเช่น Dependency Injection Scope ใหม่, ยกเครื่อง CSS ใหม่, Strict Template Type Checking, Angular CLI ที่มาพร้อมคำสั่งใหม่ๆ, Youtube Component และ Google Map Component, Localization แบบใหม่, TestBed.inject, Test ด้วย Component Harnesses และยังซัพพอร์ต TypeScript 3.7 ที่มีฟีเจอร์อย่าง Optional Chaining และ Nullish Coalescing ครับ
 
 ---
 
@@ -506,3 +543,6 @@ _Ivy, sweet Ivy This is a long awaited release for the community, as Ivy is now 
 
 [**A look at major features in the Angular Ivy version 9 release**
 _AOT everywhere, dynamic globalisation, strict mode, Bazel, and much more._](https://indepth.dev/a-look-at-major-features-in-the-angular-ivy-version-9-release/ 'https://indepth.dev/a-look-at-major-features-in-the-angular-ivy-version-9-release/')
+
+[**Announcing TypeScript 3.7**
+_We’re thrilled to announce the release of TypeScript 3.7, a release packed with awesome new language, compiler, and tooling features._](https://devblogs.microsoft.com/typescript/announcing-typescript-3-7 'https://devblogs.microsoft.com/typescript/announcing-typescript-3-7')
