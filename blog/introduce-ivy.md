@@ -25,13 +25,13 @@ image: 'assets/introduce-ivy/asset-1.jpeg'
 
 ### สารบัญ
 
-- [Ivy คืออะไร ?](blog/introduce-ivy#ivy-คืออะไร-)
-- [ขอสามคำเกี่ยวกับ Ivy ?](blog/introduce-ivy#ขอสามคำเกี่ยวกับ-ivy-)
-- [เจาะลึก Feature สำคัญของ Ivy](blog/introduce-ivy#เจาะลึก-feature-สำคัญของ-ivy)
-- [สบายใจเพราะ Backwards-compatible](blog/introduce-ivy#สบายใจด้วย-backwards-compatible)
-- [เหนือกว่าด้วย Tree Shaking](blog/introduce-ivy#เหนือกว่าด้วย-tree-shaking)
-- [เร็วขึ้นด้วย Locality](blog/introduce-ivy#เร็วขึ้นด้วย-locality)
-- [สรุป](blog/introduce-ivy#สรุป)
+- [Ivy คืออะไร ?](blog/introduce-ivy/#ivy-คืออะไร-)
+- [ขอสามคำเกี่ยวกับ Ivy ?](blog/introduce-ivy/#ขอสามคำเกี่ยวกับ-ivy-)
+- [เจาะลึก Feature สำคัญของ Ivy](blog/introduce-ivy/#เจาะลึก-feature-สำคัญของ-ivy)
+- [สบายใจเพราะ Backwards-compatible](blog/introduce-ivy/#สบายใจด้วย-backwards-compatible)
+- [เหนือกว่าด้วย Tree Shaking](blog/introduce-ivy/#เหนือกว่าด้วย-tree-shaking)
+- [เร็วขึ้นด้วย Locality](blog/introduce-ivy/#เร็วขึ้นด้วย-locality)
+- [สรุป](blog/introduce-ivy/#สรุป)
 
 ### Ivy คืออะไร ?
 
