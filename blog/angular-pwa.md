@@ -135,6 +135,29 @@ ng add @angular/pwa
 
 การใช้คำสั่ง `ng add @angular/pwa` Angular CLI จะตั้งค่าให้เรามาระดับนึงแล้ว มีบางอย่างที่เราต้องตั้งค่าเพิ่มเติมครับ อยากให้สังเกตไฟล์ที่ชื่อว่า `ngsw-config.json`ครับ ไฟล์นี่เป็นไฟล์ Config Service Worker ของ Angular ครับ หน้าตาก็จะประมาณนี้
 
+```json
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": ["/favicon.ico", "/index.html", "/*.css", "/*.js"]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/assets/**"]
+      }
+    }
+  ]
+}
+```
+
 มาไล่เรียงดูแต่ละหัวข้อของ `ngsw-config.json` ไฟล์กันนะครับ
 
 `index` ไว้ใช้บอกว่า Index File ของเราอยู่ที่ไหน
@@ -145,6 +168,50 @@ ng add @angular/pwa
 2.  กลุ่มที่ชื่อว่า `assets` อันนี้ก็หมายถึงไฟล์ที่อยู่ใน Folder assets ของเราครับ ไม่ว่าจะเป็นพวกไฟล์รูปต่างๆ สังเกตตรง `installMode` จะเป็น `lazy` หมายความว่าไฟล์เหล่านี้จะถูกโหลดมาเมื่อต้องการใช้ หรือมี Request เท่านั้น จะไม่ถูกโหลดมาก่อนเหมือน Mode `prefetch` ครับ นอกจากนั้นแล้วยังมี `updateMode` ซึ่งไว้ใช้ตัดสินว่าจะโหลด Asset เมื่อมี Version ใหม่กว่ายังไง ถ้าเป็น `updateMode: prefetch` จะโหลด Asset ใหม่ทันทีเมื่อมี Version ที่ใหม่กว่า แต่ถ้าเป็น `updateMode: lazy` จะโหลด Asset ใหม่เมื่อมี Request เท่านั้น
 
 นอกจาก `assetGroups` แล้วยังมี Property อีกตัวที่ใช้ตั้งค่าการ Cache ไฟล์เมื่อมี Network Request ซึ่งก็คือ `dataGroups` นั่นเอง เมื่อเอา `dataGroups` มาใส่ใน `ngsw-config.json` ก็จะได้หน้าตาประมาณนี้
+
+```json
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": ["/favicon.ico", "/index.html", "/*.css", "/*.js"]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/assets/**"]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-freshness",
+      "urls": ["/timeline"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 100,
+        "maxAge": "3d",
+        "timeout": "10s"
+      }
+    },
+    {
+      "name": "api-performance",
+      "urls": ["/favorites"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 100,
+        "maxAge": "3d"
+      }
+    }
+  ]
+}
+```
 
 เรามาไล่ดูแต่ละหัวข้อกันเลย
 
@@ -176,6 +243,60 @@ ng add @angular/pwa
 จะเห็นได้ว่า Angular CLI ได้สร้างไฟล์ `manifest.json` มาให้เราเรียบร้อยแล้ว :)
 
 หน้าตาไฟล์ `manifest.json` ก็จะเป็นประมาณนี้ครับ
+
+```json
+{
+  "name": "ng6-pwa",
+  "short_name": "ng6-pwa",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "assets/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+```
 
 มาไล่แต่ละหัวข้อใน `manifest.json` กันเลย
 
