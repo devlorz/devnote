@@ -101,4 +101,42 @@ ng new new-app --legacy-browsers
 
 ---
 
+### Date Range Picker
+
+ใน Angular 10 มี Date Range Picker ให้ใช้แล้ว โดยจะประกอบด้วย 2 Component คือ `mat-date-range-input` และ `mat-date-range-picker` ซึ่งสามารถใช้งานได้แบบนี้
+
+```html
+<mat-date-range-input [rangePicker]="picker">
+  <input matStartDate placeholder="Start date" />
+  <input matEndDate placeholder="End date" />
+</mat-date-range-input>
+
+<mat-date-range-picker #picker></mat-date-range-picker>
+```
+
+---
+
+### Service Worker Config ใหม่
+
+- สามารถเซต timeout ของ `registerWhenStable` ได้แล้ว ซึ่งจะส่งผลให้จะ register service worker หลังจากเวลาที่ timeout ทันทีถ้า app ไม่ stable แต่ถ้าไม่กำหนดเวลา timeout service worker จะถูก register ถ้า app ไม่ stable หลังจากผ่านไป 30 วินาที (ค่า default)
+- สามารถกำหนด `cacheQueryOptions` ของ assetGroups และ dataGroups ได้แล้วโดยตอนนี้มีแค่ option เดียวที่กำหนดได้คือ `ignoreSearch` ซึ่งใช้กำหนดให้ ignore query parameter (ค่า default เป็น false)
+
+---
+
+### CanLoad Signature ของ Router
+
+`canLoad` ของ Router ตอนนี้สามารถ return เป็น `UrlTree` ได้แล้ว
+
+---
+
+### Update TypeScript Ecosystem
+
+ใน Angular 10 ได้อัพเดทซัพพอร์ต TypeScript เวอร์ชั่น 3.9 (และซัพพอร์ต TypeScript 4.0 ใน Angular 10.1)
+
+นอกจากนั้นแล้วยังอัพเดท TSLib เป็นเวอร์ชั่น 2 และ TSLint เป็นเวอร์ชั่น 6
+
+ใน Angular 10 ได้นำเอา Solution Style TypeScript Configuration มาใช้ (เพิ่มไฟล์ `tsconfig.base.json` มา) เพื่อให้ซัพพอร์ต IDE ได้ดีขึ้น แต่หลังจากนั้นกลับพบว่ามีปัญหาเยอะกว่าที่คิด (ดูปัญหาได้จากลิ้งค์นี้ https://docs.google.com/document/d/1eB6cGCG_2ircfS5GzpDC9dBgikeYYcMxghVH5sDESHw/edit) จึงได้มีการเอาออกใน Angular 10.1 ครับ
+
+---
+
 ### References
