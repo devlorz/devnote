@@ -116,19 +116,6 @@ ng new new-app --legacy-browsers
 
 ---
 
-### Service Worker Config ใหม่
-
-- สามารถเซต timeout ของ `registerWhenStable` ได้แล้ว ซึ่งจะส่งผลให้จะ register service worker หลังจากเวลาที่ timeout ทันทีถ้า app ไม่ stable แต่ถ้าไม่กำหนดเวลา timeout service worker จะถูก register ถ้า app ไม่ stable หลังจากผ่านไป 30 วินาที (ค่า default)
-- สามารถกำหนด `cacheQueryOptions` ของ assetGroups และ dataGroups ได้แล้วโดยตอนนี้มีแค่ option เดียวที่กำหนดได้คือ `ignoreSearch` ซึ่งใช้กำหนดให้ ignore query parameter (ค่า default เป็น false)
-
----
-
-### CanLoad Signature ของ Router
-
-`canLoad` ของ Router ตอนนี้สามารถ return เป็น `UrlTree` ได้แล้ว
-
----
-
 ### Update TypeScript Ecosystem
 
 ใน Angular 10 ได้อัพเดทซัพพอร์ต TypeScript เวอร์ชั่น 3.9 (และซัพพอร์ต TypeScript 4.0 ใน Angular 10.1)
@@ -136,6 +123,50 @@ ng new new-app --legacy-browsers
 นอกจากนั้นแล้วยังอัพเดท TSLib เป็นเวอร์ชั่น 2 และ TSLint เป็นเวอร์ชั่น 6
 
 ใน Angular 10 ได้นำเอา Solution Style TypeScript Configuration มาใช้ (เพิ่มไฟล์ `tsconfig.base.json` มา) เพื่อให้ซัพพอร์ต IDE ได้ดีขึ้น แต่หลังจากนั้นกลับพบว่ามีปัญหาเยอะกว่าที่คิด (ดูปัญหาได้จากลิ้งค์นี้ https://docs.google.com/document/d/1eB6cGCG_2ircfS5GzpDC9dBgikeYYcMxghVH5sDESHw/edit) จึงได้มีการเอาออกใน Angular 10.1 ครับ
+
+---
+
+### Lightweight Injection Token
+
+Lightweight Injection Token เป็นฟีเจอร์ใหม่ แต่อาจจะได้ใช้เฉพาะคนที่ทำ Library เท่านั้นครับ
+
+Lightweight Injection Token จะทำให้สามารถ Tree Shaking Injection Token ที่ไม่ได้ใช้ออกไปได้ อ่านรายละเอียดเกี่ยวกับ Lightweight Injection Token ที่ลิ้งค์ด้านล่างได้เลย
+
+[**Optimizing client app size with lightweight injection tokens**
+_This page provides a conceptual overview of a dependency injection technique that is recommended for library developers._](https://angular.io/guide/lightweight-injection-tokens 'https://angular.io/guide/lightweight-injection-tokens')
+
+---
+
+### อัพเดทอื่นๆ
+
+#### Service Worker
+
+- สามารถเซต timeout ของ `registerWhenStable` ได้แล้ว ซึ่งจะส่งผลให้จะ register service worker หลังจากเวลาที่ timeout ทันทีถ้า app ไม่ stable แต่ถ้าไม่กำหนดเวลา timeout service worker จะถูก register ถ้า app ไม่ stable หลังจากผ่านไป 30 วินาที (ค่า default)
+- สามารถกำหนด `cacheQueryOptions` ของ assetGroups และ dataGroups ได้แล้วโดยตอนนี้มีแค่ option เดียวที่กำหนดได้คือ `ignoreSearch` ซึ่งใช้กำหนดให้ ignore query parameter (ค่า default เป็น false)
+
+#### Router
+
+- `canLoad` ของ Router ตอนนี้สามารถ return เป็น `UrlTree` ได้แล้ว
+
+#### Compiler
+
+- เพิ่ม option `strictInputAccessModifiers` เพื่อทำให้แจ้ง error ถ้า Input binding พยายามทำการ assign ค่าให้ restricted field(readonly, private, protected)
+
+#### Forms
+
+- Forms error message ถูกเอาออกจาก production build ทำให้ bundle size เล็กลง
+
+#### Testing
+
+- เปลี่ยนชื่อ `async()` testing helper function เป็น `waitForAsync()` เพื่อป้องกันความสับสนกับ JavaScript async
+
+#### i18n
+
+- เพิ่ม option `--ivy` สำหรับการใช้ Ivy Compiler เพื่อ Extract Translation แบบนี้
+
+```
+$ ng xi18n --ivy
+```
 
 ---
 
