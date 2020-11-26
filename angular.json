@@ -28,12 +28,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/tailwind.scss"
+              "src/styles.scss"
             ],
             "scripts": [],
             "customWebpackConfig": {
-              "path": "extra-webpack.config.js"
+              "path": "webpack.config.js"
             }
           },
           "configurations": {
@@ -72,7 +71,7 @@
           "options": {
             "browserTarget": "devnote:build",
             "customWebpackConfig": {
-              "path": "extra-webpack.config.js"
+              "path": "webpack.config.js"
             }
           },
           "configurations": {
