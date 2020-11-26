@@ -1,6 +1,13 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 /* include CSS for prism toolbar */
-@import '~prismjs/plugins/toolbar/prism-toolbar.css';
-@import '~prismjs/plugins/inline-color/prism-inline-color.css';
+// @import '~prismjs/plugins/toolbar/prism-toolbar.css';
+// @import '~prismjs/plugins/inline-color/prism-inline-color.css';
 /* check node_modules/prismjs/themes/ for the available themes */
 @import './prism-okaidia';
 
