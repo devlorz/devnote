@@ -25,7 +25,7 @@
     "@ngneat/tailwind": "^1.1.0",
     "@scullyio/init": "1.0.0-beta.3",
     "@scullyio/ng-lib": "1.0.0-beta.2",
-    "@scullyio/scully": "1.0.0-beta.3",
+    "@scullyio/scully": "1.0.9",
     "prismjs": "^1.19.0",
     "rxjs": "~6.5.3",
     "tailwindcss": "^2.1.4",
