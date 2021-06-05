@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent {
   @Input() title: string;
   @Input() description: string;
   @Input() date: Date;
@@ -13,6 +13,4 @@ export class ArticleComponent implements OnInit {
   @Output() clicked = new EventEmitter();
 
   constructor() {}
-
-  ngOnInit() {}
 }
