@@ -28,6 +28,9 @@ image: 'assets/angular-12/asset-1.jpg'
 - [ลาก่อน TSLint](blog/angular-12/#ลาก่อน-tslint)
 - [อัพเดทอื่นๆ](blog/angular-12/#อัพเดทอื่นๆ)
 - [Deprecate IE11](blog/angular-12/#deprecate-ie11)
+- [Angular 12.1](blog/angular-12/#angular-121)
+- [Angular 12.2](blog/angular-12/#angular-122)
+- [สรุป](blog/angular-12/#สรุป)
 
 ---
 
@@ -172,6 +175,61 @@ IE11 จะถูกเลิกซัพพอร์ตตั้งแต่ An
 
 ---
 
+### Angular 12.1
+
+- เพิ่ม class `ng-submitted` กับ form ที่ถูก submit และจะถูกเอาออกถ้า form ถูก reset
+- เพิ่ม shorthand property declaration ใน template
+
+```html
+<!-- ก่อน Angualr 12.1 -->
+<button (click)="setAge({ age: age })">Set age</button>
+
+<!-- ตั้งแต่ Angular 12.1 -->
+<button (click)="setAge({ age })">Set age</button>
+```
+
+- ยกเลิกซัพพอร์ต shadow property piercing `/deep/`
+- `TestBed.initTestEnvironment` และ `TestBed.configureTestingModule` เพิ่ม option `{ teardown: { destroyAfterEach: true }` ซึ่งทำให้ run test ได้เร็วขึ้น
+- `delete` method ของ `HttpClient` ตอนนี้รับ optional `body` แล้ว และทุก method ยังรับ `URLSearchParams` อีกด้วย
+- เพิ่ม `onActionClick` สำหรับ Service Worker ทำให้สามารถ handle event หลังกด notification แม้ว่า Application ไม่ได้ถูกเปิด โดยจะมี 3 option คือ `openWindow` , `focusLastFocusedOrOpen` และ `navigateLastFocusedOrOpen`
+- ซัพพอร์ต TypeScript 4.3
+- `ng generate` สามารถใช้ flag `style=none` เพื่อไม่ให้สร้าง style file ได้แล้ว
+- เพิ่ม experimental persistent build cache ซึ่งอาจทำให้ build เร็วขึ้นโดยใช้คำสั่งนี้
+
+```bash
+NG_PERSISTENT_BUILD_CACHE=1 ng serve
+```
+
+---
+
+### Angular 12.2
+
+- เพิ่ม method `hasValidator` , `addValidators` และ `removeValidators` สำหรับ validators และ `hasAsyncValidator` , `addAsyncValidators` และ `removeAsyncValidators` สำหรับ async validators
+- template สามารถใช้ underscore เป็น separator สำหรับตัวเลขได้แล้วแบบนี้ `{{ 2_000_000 }}`
+- สามารถ provide `RouteReuseStrategy` ผ่าน DI สำหรับ router testing module ได้แล้วแบบนี้
+
+```ts
+TestBed.configureTestingModule({
+  imports: [RouterTestingModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: CustomReuseStrategy }],
+});
+```
+
+- `ng build` สามารถ build ได้เร็วขึ้นเพราะมีการใช้ `esbuild` ภายใน Angular CLI โดย `esbuild` จะมาช่วยนำ code ที่ไม่จำเป็นออกแล้ว `terser` จะทำการ optimize code นั้นอีกที
+- deprecate Sass warning
+
+---
+
+### สรุป
+
+Angular 12 ถือว่าเป็น Version ที่ออกมาเพื่อเข้าใกล้ความเป็น Ivy Everywhere มากที่สุดตั้งแต่ออกมา หลายคนอาจจะรู้จักข้อดีมากมายของ Ivy แล้วแต่ทีม Angular ก็ยังไม่ได้เอา View Template ออกไปทันที เพื่อให้การเปลี่ยนผ่านจาก View Template ไปสู่ Ivy เป็นไปได้โดยราบรื่นและให้เกิดปัญหากับผู้ใช้งานน้อยที่สุดครับ
+
+นอกจากนั้นทางทีม Angular ยังสนใจเพื่อจะพัฒนาเรื่อง Developer Experience อีกด้วย ไม่ว่าจะเป็นการออก RFC เรื่อง Protractor การปรับปรุงหลายๆอย่างเพื่อซัพพอร์ต Sass ที่ดีขึ้น การยกเลิกซัพพอร์ต TSLint ที่ไม่ได้มีการพัฒนาต่อแล้วและ deprecate IE11 ซึ่งเป็น browser เก่าเพื่อจะได้ไปซัพพอร์ต browser และ web technology ที่ใหม่กว่า รวมทั้งยังจะมีความพยายามให้ซัพพอร์ต TypeScript เวอร์ชั่นล่าสุดอีกด้วย
+
+แล้วเจอกันใหม่อีกทีตอน Angular 13 ครับ :)
+
+---
+
 ### References
 
 [**Angular v12 is now available**
@@ -182,3 +240,15 @@ _Angular 12.0.0 is here! This new major version contains quite a few changes!_](
 
 [**What's new in Angular CLI 12.0?**
 _Angular CLI 12.0.0 is out!_](https://blog.ninja-squad.com/2021/05/12/angular-cli-12.0 'https://blog.ninja-squad.com/2021/05/12/angular-cli-12.0')
+
+[**What's new in Angular 12.1?**
+_Angular 12.1.0 is here! This new minor version contains a few interesting features._](https://blog.ninja-squad.com/2021/06/25/what-is-new-angular-12.1 'https://blog.ninja-squad.com/2021/06/25/what-is-new-angular-12.1')
+
+[**What's new in Angular CLI 12.1?**
+_Angular CLI 12.1.0 is out!_](https://blog.ninja-squad.com/2021/06/25/angular-cli-12.1 'https://blog.ninja-squad.com/2021/06/25/angular-cli-12.1')
+
+[**What's new in Angular 12.2?**
+_Angular 12.2.0 is here! This new minor version contains only a few features._](https://blog.ninja-squad.com/2021/08/04/what-is-new-angular-12.2 'https://blog.ninja-squad.com/2021/08/04/what-is-new-angular-12.2')
+
+[**What's new in Angular CLI 12.2?**
+_Angular CLI 12.2.0 is out!_](https://blog.ninja-squad.com/2021/08/04/angular-cli-12.2 'https://blog.ninja-squad.com/2021/08/04/angular-cli-12.2')
